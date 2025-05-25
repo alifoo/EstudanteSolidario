@@ -1,0 +1,36 @@
+body{
+    background-color: #F1F1F1;
+}
+
+#div-subtitle{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    width: 100vw;
+    height: 20vh;
+    background-color: #A8D5BA;
+    color: #2F5233;
+}
+
+#subtitle{
+    font-size: 2em;
+    margin-top: 3vh;
+}
+
+#subtitle-paragraph{
+    font-size: 1em;
+    margin-bottom: 3vh;
+}
+
+#activities{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+}
+
+#activities .container{
+    background-color: white;
+    width: 90%;
+    margin: 24px 0;
+}

@@ -9,7 +9,7 @@ header{
     flex-wrap: wrap;
 }
 
-#div-title, #menu h2{
+#div-title, #menu .menu-item{
     text-transform: uppercase;
     color: white;
     margin: 0 61px;
@@ -32,23 +32,33 @@ header{
     gap: 40px;
 }
 
-#menu h2{
+#profile{
+    display: none;
+}
+#profile.show {
+    display: flex;
+}
+#login.show {
+    display: none;
+}
+
+#menu .menu-item{
     font-weight: 500;
     font-size: 1em;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
 }
-#menu h2:hover{
+#menu .menu-item:hover{
     color: #A8D5BA;
     text-decoration: underline;
 }
+
 
 @media(max-width: 600px){
     header {
         height: auto;
         flex-wrap: wrap;
         align-items: flex-start;
-        padding-bottom: 10px;
 }   
 
     #div-title{
@@ -60,17 +70,19 @@ header{
         display: none;
         flex-direction: column;
         width: 100%;
-        margin-right: 10px;
+        margin-left: 10px;
         gap: 10px;
-        align-items: flex-end;
-        
+        align-items: flex-start;
     }
     #menu.show {
         display: flex;
     }
 
-    #menu h2{
+    #menu .menu-item{
         margin: 10px 0 0 0;
+    }
+    #menu:last-child{
+        margin-bottom: 20px;
     }
 
     #menu-toggle {
