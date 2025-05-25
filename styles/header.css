@@ -1,0 +1,92 @@
+header{
+    height: 10vh;
+    width: 100vw;
+    background-color: #2C2C2C;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#div-title, #menu .menu-item{
+    text-transform: uppercase;
+    color: white;
+    margin: 0 61px;
+}
+
+#div-title{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+#menu{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 40px;
+}
+
+#profile{
+    display: none;
+}
+#profile.show {
+    display: flex;
+}
+#login.show {
+    display: none;
+}
+
+#menu .menu-item{
+    font-weight: 500;
+    font-size: 1em;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+#menu .menu-item:hover{
+    color: #A8D5BA;
+    text-decoration: underline;
+}
+
+
+@media(max-width: 600px){
+    header {
+        height: auto;
+        flex-wrap: wrap;
+        align-items: flex-start;
+}   
+
+    #div-title{
+        margin-left: 10px;
+        align-self: center;
+    }
+
+    #menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-left: 10px;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    #menu.show {
+        display: flex;
+    }
+
+    #menu .menu-item{
+        margin: 10px 0 0 0;
+    }
+    #menu:last-child{
+        margin-bottom: 20px;
+    }
+
+    #menu-toggle {
+        display:block;
+        margin: 10px;
+    }
+}

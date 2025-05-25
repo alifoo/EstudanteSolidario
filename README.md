@@ -5,7 +5,7 @@ Aplicação web que permite que estudantes universitários ajudem a população 
 
 ### Base
 
-- [ ] Formular identidade visual do projeto no Figma
+- [x] Formular identidade visual do projeto no Figma
 - [ ] Criação da base do projeto
     - [ ] Base HTML
     - [ ] Base CSS
