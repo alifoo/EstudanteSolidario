@@ -1,0 +1,7 @@
+/* TODO O CSS ESTÁ ORGANIZADO NA MESMA ORDEM QUE O HTML */
+
+@import url(header.css);
+
+body{
+    background-color: #F1F1F1;
+}
