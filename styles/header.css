@@ -9,7 +9,7 @@ header{
     flex-wrap: wrap;
 }
 
-#div-title, header nav h2{
+#div-title, #menu h2{
     text-transform: uppercase;
     color: white;
     margin: 0 61px;
@@ -20,47 +20,61 @@ header{
     font-weight: bold;
 }
 
-.menu-toggle {
+#menu-toggle {
   display: none;
   font-size: 26px;
   cursor: pointer;
 }
 
-nav{
+#menu{
     display: flex;
     flex-direction: row-reverse;
     gap: 40px;
 }
 
-nav h2{
+#menu h2{
     font-weight: 500;
     font-size: 1em;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
 }
-nav h2:hover{
+#menu h2:hover{
     color: #A8D5BA;
     text-decoration: underline;
 }
 
 @media(max-width: 600px){
-    header{
-        width: 100vw;
-        flex-direction: column;
+    header {
+        height: auto;
+        flex-wrap: wrap;
         align-items: flex-start;
+        padding-bottom: 10px;
+}   
+
+    #div-title{
+        margin-left: 10px;
+        align-self: center;
     }
 
-    nav{
+    #menu {
+        display: none;
         flex-direction: column;
         width: 100%;
+        margin-right: 10px;
+        gap: 10px;
+        align-items: flex-end;
+        
     }
-    nav a{
-        width: 100%;
-        padding: 10px 0;
-        border-top: 1px solid #444;
+    #menu.show {
+        display: flex;
     }
 
-    nav a:last-child{
-        border-bottom: 1px solid #444;
+    #menu h2{
+        margin: 10px 0 0 0;
+    }
+
+    #menu-toggle {
+        display:block;
+        margin: 10px;
     }
 }
