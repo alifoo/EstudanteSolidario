@@ -8,10 +8,10 @@ db.serialize(() => {
       name TEXT NOT NULL,
       birthday TEXT NOT NULL UNIQUE,
       email TEXT NOT NULL,
-      password TEXT NOT NULL
+      password TEXT NOT NULL,
       is_student INTEGER NOT NULL DEFAULT 0,
       course TEXT,
-      university TEXT,
+      university TEXT
     )
   `);
 
@@ -21,7 +21,7 @@ db.serialize(() => {
     title TEXT NOT NULL,
     content TEXT NOT NULL,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (used_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
   )`);
 });
 
