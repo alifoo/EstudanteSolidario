@@ -1,6 +1,15 @@
 # EstudanteSolidario
 Aplicação web que permite que estudantes universitários ajudem a população geral através de trabalhos voluntários.
 
+## Como rodar o projeto localmente
+Para ativar o banco de dados e servidor backend, siga esses passos:
+```
+git clone https://github.com/alifoo/EstudanteSolidario # clonar o projeto
+cd EstudanteSolidario # acessar a pasta do projeto
+npm install # instalar as dependencias
+node js/server.js # rodar o server localmente
+```
+
 ## Development Roadmap
 
 ### Base
