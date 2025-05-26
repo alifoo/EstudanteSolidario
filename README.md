@@ -6,9 +6,9 @@ Aplicação web que permite que estudantes universitários ajudem a população 
 ### Base
 
 - [x] Formular identidade visual do projeto no Figma
-- [ ] Criação da base do projeto
-    - [ ] Base HTML
-    - [ ] Base CSS
+- [x] Criação da base do projeto
+    - [x] Base HTML
+    - [x] Base CSS
 
 ### Front
 
@@ -33,7 +33,7 @@ Aplicação web que permite que estudantes universitários ajudem a população 
 - [ ] Direcionamento de itens clicáveis (clicar em tal botão vai pro perfil, clicar em determinado texto vai para um link, etc)
 
 #### Segunda etapa
-- [ ] Implementar banco de dados simples com SQLite
+- [x] Implementar banco de dados simples com SQLite
 - [ ] Lógica para a busca de informações no banco
     - [ ] Busca de info do perfil do usuário
     - [ ] Busca de info trabalhos voluntários
