@@ -6,7 +6,7 @@ const postRoutes = require("./routes/postRoutes");
 const app = express();
 app.use(express.json()); // para receber JSON no body
 
-// Rotas
+app.use(express.static("public"));
 app.use("/auth", authRoutes);
 app.use("/posts", postRoutes);
 
