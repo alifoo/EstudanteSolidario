@@ -6,6 +6,7 @@
     <title>Estudante Solidário</title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="img/logo-icon.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -31,20 +32,104 @@
 
         
         <div id="overlay"></div>
-        <div id="div-login">
-            <img id="login-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
+        <div class="div-popup-form" id="div-login">
+            <img class="login-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
             <h2 class="form-title">bem-vindo ao estudante solidário</h2>
-            <input type="email" placeholder="E-mail">
-            <input type="password" placeholder="Senha">
-            <button id="login-main-button">Entrar</button>
+            <form action="">
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <button id="login-main-button" type="submit">Entrar</button>
+            </form>
             <span>ou</span>
-            <button class="create-account-button">Criar nova conta</button>
+            <button class="create-account-button" id="goto-signin-button">Criar nova conta</button>
         </div>
 
 
-        <div id="activities">
-            
+        <div class="div-popup-form" id="div-signup">
+            <img class="login-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
+            <h2 class="form-title">Criar uma nova conta</h2>
+            <form action="">
+
+                <div id="name" class="form-subdiv">
+                    <input type="text" id="fname" placeholder="Nome">
+                    <input type="text" id="lname" placeholder="Sobrenome">
+                </div>
+
+                <div id="birthdate" class="form-subdiv">
+                    <p class="form-label">Data de nascimento</p>
+                    <select id="birthDay" name="birthday-day" required>
+                        <option value="" disabled selected>Dia</option>
+                        <script>
+                            for (let i = 1; i <= 31; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+
+                    <select id="birthMonth" name="birthday-month" required>
+                        <option value="" disabled selected>Mês</option>
+                        <script>
+                            const meses = [
+                            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+                            ];
+                            for (let i = 0; i < meses.length; i++) {
+                            document.write(`<option value="${i + 1}">${meses[i]}</option>`);
+                            }
+                        </script>
+                    </select>
+
+                    <select id="year" name="birthday-year" required>
+                        <option value="" disabled selected>Ano</option>
+                        <script>
+                            for (let i = 2025; i >= 1900; i--) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+
+                </div>
+
+                <div id="gender userType" class="form-subdiv">
+                    <p class="form-label">Gênero</p>
+                    <select name="gender" id="gender-select" required>
+                        <option value="" disabled selected>Escolher</option>
+                        <option value="Fem">Feminino</option>
+                        <option value="Masc">Masculino</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+
+                    <p class="form-label">Perfil de</p>
+                    <select name="userType" id="userType-select">
+                        <option value="" disabled selected>Escolher</option>
+                        <option value="estudante">Estudante</option>
+                        <option value="cidadão">Cidadão</option>
+                    </select>
+                </div>
+                <div id="student-input" class="form-subdiv">
+
+                    <input type="text" id="university" placeholder="Universidade">
+
+                    <select name="student-area" id="student-area-select">
+                        <option value="computacao">Ciência da Computação / Engenharia de Software</option>
+                        <option value="engenharias">Engenharias</option>
+                        <option value="biologicas">Ciências Biológicas / Saúde</option>
+                        <option value="exatas">Ciências Exatas (Física, Matemática, Química)</option>
+                        <option value="humanas">Ciências Humanas (Filosofia, História, Sociologia)</option>
+                        <option value="sociais-aplicadas">Ciências Sociais Aplicadas (Direito, Administração, Economia)</option>
+                        <option value="linguistica">Linguística / Letras / Artes</option>
+                        <option value="agrarias">Ciências Agrárias</option>
+                        <option value="ambientais">Ciências Ambientais</option>
+                        <option value="outro">Outro</option>
+                    </select>
+
+                </div>
+                <button type="submit"></button>
+            </form>
         </div>
+
+
+        <div id="activities"></div>
     </main>
 
 

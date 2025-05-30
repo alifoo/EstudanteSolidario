@@ -3,6 +3,14 @@ body{
     overflow-x: hidden;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
 strong{
     font-weight: bold !important;
 }
@@ -41,10 +49,14 @@ strong{
     z-index: 3;
 }
 
-#div-login{
+
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/*                                  DIV DE LOGIN                                 */
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+.div-popup-form{
     display: none;
-    width: 50vw;
-    height: 66vh;
+    width: min(50vw, 650px);
+    height: min(66vh, 433px);
     position: fixed;
     left: 25%;
     top: 16.5%;
@@ -54,12 +66,12 @@ strong{
     align-items: center;
     box-shadow: 4px 4px 40px 0px #1E1E1E;
 }
-#div-login.show, #overlay.show{
+.div-popup-form.show, #overlay.show{
     display: flex;
     flex-direction: column;
 }
 
-#div-login>img{
+.div-popup-form>img{
     position: absolute;
     right: 10px;
     top: 10px;
@@ -68,7 +80,7 @@ strong{
     cursor: pointer;
 }
 
-#div-login .form-title{
+.div-popup-form .form-title{
     text-transform: uppercase;
     margin: 4vh 0 6vh 0;
     font-size: 1.3em;
@@ -81,24 +93,24 @@ strong{
     border-radius: 5px;
     padding: 0.8em;
 }
-#div-login input{
+.div-popup-form input{
     background-color: #E4E4E4;
     margin-bottom: 5%;
 }
 
-#div-login button{
+.div-popup-form button{
     background-color: #138F21;
 }
 
-#div-login span {
+.div-popup-form span {
     position: relative;
     display: block;
     width: 75%;
     text-align: center;
     margin: 5% 0;
 }
-#div-login span::before,
-#div-login span::after {
+.div-popup-form span::before,
+.div-popup-form span::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -106,18 +118,18 @@ strong{
     background-color: #2C2C2C;
     transform: translateY(-50%);
 }
-#div-login span::before {
+.div-popup-form span::before {
     left: 0;
     right: 50%;
     margin-right: 15px;
 }
-#div-login span::after {
+.div-popup-form span::after {
     right: 0;
     left: 50%;
     margin-left: 15px;
 }
 
-#div-login>button{
+.div-popup-form>button{
     cursor: pointer;
 }
 
@@ -125,8 +137,26 @@ strong{
     margin: 0 0 4vh 0;
 }
 
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/*                                 DIV DE SIGNIN                                 */
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+.form-subdiv{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.form-subdiv .form-label{
+    display: block;
+    flex-basis: 100%;
+}
 
 
+
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/*                               DIV DE ATIVIDADES                               */
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 #activities{
     display: grid;
     grid-template-columns: 50% 50%;
@@ -194,7 +224,7 @@ strong{
 
 
 @media(max-width:600px){
-    #div-login{
+    .div-popup-form{
         display: none;
         width: 98vw;
         height: auto;
@@ -210,7 +240,7 @@ strong{
         align-items: center;
         box-shadow: 4px 4px 40px 0px #1E1E1E;
     }
-    #div-login .form-title{
+    .div-popup-form .form-title{
         text-transform: uppercase;
         text-align: center;
         margin: 4vh 0 6vh 0;
