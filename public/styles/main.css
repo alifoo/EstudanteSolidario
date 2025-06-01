@@ -15,6 +15,7 @@ strong{
     font-weight: bold !important;
 }
 
+
 #div-subtitle{
     display: flex;
     flex-direction: column;
@@ -36,8 +37,6 @@ strong{
     margin-bottom: 3vh;
 }
 
-
-
 #overlay{
     display: none;
     position: fixed;
@@ -50,8 +49,9 @@ strong{
 }
 
 
+
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-/*                                  DIV DE LOGIN                                 */
+/*                             EM COMUM NOS POPUPS                               */
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 .div-popup-form{
     display: none;
@@ -66,9 +66,11 @@ strong{
     align-items: center;
     box-shadow: 4px 4px 40px 0px #1E1E1E;
 }
-.div-popup-form.show, #overlay.show{
-    display: flex;
-    flex-direction: column;
+
+.div-popup-form .form-title{
+    text-transform: uppercase;
+    margin: 4vh 0 6vh 0;
+    font-size: 1.3em;
 }
 
 .div-popup-form>img{
@@ -80,20 +82,7 @@ strong{
     cursor: pointer;
 }
 
-.div-popup-form .form-title{
-    text-transform: uppercase;
-    margin: 4vh 0 6vh 0;
-    font-size: 1.3em;
-}
-
-#div-login input, #div-login button{
-    box-sizing: border-box;
-    width: 75%;
-    border: 1px solid #1E1E1E;
-    border-radius: 5px;
-    padding: 0.8em;
-}
-.div-popup-form input{
+.div-popup-form input, .div-popup-form select{
     background-color: #E4E4E4;
     margin-bottom: 5%;
 }
@@ -102,15 +91,35 @@ strong{
     background-color: #138F21;
 }
 
-.div-popup-form span {
+
+
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/*                                  DIV DE LOGIN                                 */
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+
+#div-login.show, #overlay.show{
+    display: flex;
+    flex-direction: column;
+}
+
+#div-login input, #div-login button{
+    box-sizing: border-box;
+    width: 75%;
+    border: 1px solid #1E1E1E;
+    border-radius: 5px;
+    height: 2.6em;
+    padding-left: 0.8em;
+}
+
+#div-login span {
     position: relative;
     display: block;
     width: 75%;
     text-align: center;
     margin: 5% 0;
 }
-.div-popup-form span::before,
-.div-popup-form span::after {
+#div-login span::before,
+#div-login span::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -118,18 +127,18 @@ strong{
     background-color: #2C2C2C;
     transform: translateY(-50%);
 }
-.div-popup-form span::before {
+#div-login span::before {
     left: 0;
     right: 50%;
     margin-right: 15px;
 }
-.div-popup-form span::after {
+#div-login span::after {
     right: 0;
     left: 50%;
     margin-left: 15px;
 }
 
-.div-popup-form>button{
+#div-login>button{
     cursor: pointer;
 }
 
@@ -137,24 +146,94 @@ strong{
     margin: 0 0 4vh 0;
 }
 
+
+
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-/*                                 DIV DE SIGNIN                                 */
+/*                                 DIV DE SIGNUP                               */
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+#div-signup{
+    display: none;
+}
+#div-signup.show, #overlay.show{
+    display: flex;
+    flex-direction: column;
+}
+
 .form-subdiv{
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.3rem;
 }
 .form-subdiv .form-label{
     display: block;
     flex-basis: 100%;
 }
+.form-subdiv label{
+    font-size: 1em;
+    width:fit-content;
+    height: 1em;
+    margin-left: 1em;
+}
+.form-subdiv input, .form-subdiv select{
+    box-sizing: border-box;
+    border: 1px solid #1E1E1E;
+    border-radius: 5px;
+    height: 2.6em;
+    width: 97%;
+    padding-left: 0.8em;
+}
+
+.input-subdiv{
+    width: 100%;
+}
+
+.two-input-div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.two-input-div > *:first-child {
+    justify-self: start;
+}
+.two-input-div > *:last-child {
+    justify-self: end;
+}
+
+.two-divs{
+    display: flexbox;
+    width: 100%;
+    gap: 0.3rem;
+}
+.two-divs:last-child > select:last-child {
+  display: block;
+  margin-left: auto;
+}
+
+.three-input-div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+.three-input-div > *:first-child {
+    justify-self: start;
+}
+.three-input-div > *:last-child {
+    justify-self: end;
+}
+
+#div-signup button{
+    box-sizing: border-box;
+    margin-top: 2%;
+    width: 80%;
+    border: 1px solid #1E1E1E;
+    border-radius: 5px;
+    height: 2.6em;
+    padding-left: 0.8em;
+}
 
 
-
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 /*                               DIV DE ATIVIDADES                               */
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 #activities{
@@ -224,7 +303,7 @@ strong{
 
 
 @media(max-width:600px){
-    .div-popup-form{
+    #div-login{
         display: none;
         width: 98vw;
         height: auto;
@@ -240,7 +319,7 @@ strong{
         align-items: center;
         box-shadow: 4px 4px 40px 0px #1E1E1E;
     }
-    .div-popup-form .form-title{
+    #div-login .form-title{
         text-transform: uppercase;
         text-align: center;
         margin: 4vh 0 6vh 0;
@@ -264,6 +343,4 @@ strong{
         justify-content: space-evenly;
         margin: 12px 0;
     }
-
-
 }

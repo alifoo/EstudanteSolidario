@@ -51,66 +51,74 @@
             <form action="">
 
                 <div id="name" class="form-subdiv">
-                    <input type="text" id="fname" placeholder="Nome">
-                    <input type="text" id="lname" placeholder="Sobrenome">
+                    <label class="form-label">Nome completo</label>
+                    <div class="two-input-div input-subdiv">
+                        <input type="text" id="fname" placeholder="Nome">
+                        <input type="text" id="lname" placeholder="Sobrenome">
+                    </div>
                 </div>
 
                 <div id="birthdate" class="form-subdiv">
-                    <p class="form-label">Data de nascimento</p>
-                    <select id="birthDay" name="birthday-day" required>
-                        <option value="" disabled selected>Dia</option>
-                        <script>
-                            for (let i = 1; i <= 31; i++) {
-                            document.write(`<option value="${i}">${i}</option>`);
-                            }
-                        </script>
-                    </select>
+                    <label class="form-label">Data de nascimento</label>
+                    <div class="three-input-div input-subdiv">
+                        <select id="birthDay" name="birthday-day" required>
+                            <option value="" disabled selected>Dia</option>
+                            <script>
+                                for (let i = 1; i <= 31; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
 
-                    <select id="birthMonth" name="birthday-month" required>
-                        <option value="" disabled selected>Mês</option>
-                        <script>
-                            const meses = [
-                            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-                            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-                            ];
-                            for (let i = 0; i < meses.length; i++) {
-                            document.write(`<option value="${i + 1}">${meses[i]}</option>`);
-                            }
-                        </script>
-                    </select>
+                        <select id="birthMonth" name="birthday-month" required>
+                            <option value="" disabled selected>Mês</option>
+                            <script>
+                                const meses = [
+                                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+                                ];
+                                for (let i = 0; i < meses.length; i++) {
+                                document.write(`<option value="${i + 1}">${meses[i]}</option>`);
+                                }
+                            </script>
+                        </select>
 
-                    <select id="year" name="birthday-year" required>
-                        <option value="" disabled selected>Ano</option>
-                        <script>
-                            for (let i = 2025; i >= 1900; i--) {
-                            document.write(`<option value="${i}">${i}</option>`);
-                            }
-                        </script>
-                    </select>
-
+                        <select id="year" name="birthday-year" required>
+                            <option value="" disabled selected>Ano</option>
+                            <script>
+                                for (let i = 2025; i >= 1900; i--) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </div>
                 </div>
 
-                <div id="gender userType" class="form-subdiv">
-                    <p class="form-label">Gênero</p>
-                    <select name="gender" id="gender-select" required>
-                        <option value="" disabled selected>Escolher</option>
-                        <option value="Fem">Feminino</option>
-                        <option value="Masc">Masculino</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-
-                    <p class="form-label">Perfil de</p>
-                    <select name="userType" id="userType-select">
-                        <option value="" disabled selected>Escolher</option>
-                        <option value="estudante">Estudante</option>
-                        <option value="cidadão">Cidadão</option>
-                    </select>
+                <div id="gender-userType" class="form-subdiv two-input-div">
+                    <div class="two-divs form-subdiv">
+                        <label for="gender" class="form-label">Gênero</label>
+                        <select name="gender" id="gender-select" required>
+                            <option value="" disabled selected>Escolher</option>
+                            <option value="Fem">Feminino</option>
+                            <option value="Masc">Masculino</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="two-divs form-subdiv">
+                        <label for="userType" class="form-label">Perfil de</label>
+                        <select name="userType" id="userType-select" style="text-align: right;">
+                            <option value="" disabled selected>Escolher</option>
+                            <option value="estudante">Estudante</option>
+                            <option value="cidadão">Cidadão</option>
+                        </select>
+                    </div>
                 </div>
-                <div id="student-input" class="form-subdiv">
 
+                <div id="student-input" class="form-subdiv two-input-div">
                     <input type="text" id="university" placeholder="Universidade">
-
                     <select name="student-area" id="student-area-select">
+                        <option value="" disabled selected>Curso</option>
                         <option value="computacao">Ciência da Computação / Engenharia de Software</option>
                         <option value="engenharias">Engenharias</option>
                         <option value="biologicas">Ciências Biológicas / Saúde</option>
@@ -124,7 +132,7 @@
                     </select>
 
                 </div>
-                <button type="submit"></button>
+                <button type="submit">Criar</button>
             </form>
         </div>
 
