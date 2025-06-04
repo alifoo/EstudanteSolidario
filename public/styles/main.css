@@ -37,6 +37,10 @@ strong{
     margin-bottom: 3vh;
 }
 
+#login.hide{
+    display: none;
+}
+
 #overlay{
     display: none;
     position: fixed;

@@ -25,3 +25,10 @@ export function signinPopUp(){
   loginPopUp.classList.remove('show');
   signinPopUp.classList.add('show');
 }
+
+export function teste(){
+  const login = document.getElementById("login");
+  const profile = document.getElementById("profile");
+  login.classList.add('hide');
+  profile.classList.add('show');
+}

@@ -1,7 +1,7 @@
 import * as toggle from './toggle.js';
 
 document.getElementById('menu-toggle').addEventListener('click', toggle.toggleMenu);
-document.getElementById('login').addEventListener('click', toggle.loginPopUp);
+document.getElementById('login').addEventListener('click', toggle.teste);
 document.querySelectorAll('.login-exit-button').forEach(button => {
   button.addEventListener('click', toggle.exitLoginPopup);
 });
