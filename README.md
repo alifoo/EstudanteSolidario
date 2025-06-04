@@ -30,7 +30,7 @@ node js/server.js # rodar o server localmente
 - [ ] Tela de perfil do usuário (estudante)
 - [ ] Tela de perfil do usuário (cidadão)
 - [ ] Tela de trabalho voluntário individual
-- [ ] Tela principal do projeto, onde ficará a listagem de todos os trabalhos voluntários disponíveis
+- [x] Tela principal do projeto, onde ficará a listagem de todos os trabalhos voluntários disponíveis
 
 ### Back-end
 

@@ -19,10 +19,10 @@ strong{
 #div-subtitle{
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100vw;
-    height: 20vh;
+    min-height: 20vh;
     background-color: #A8D5BA;
     color: #2F5233;
 }
@@ -64,7 +64,7 @@ strong{
     transform: translate(-50%, -50%);
     z-index: 4;
     border-radius: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 4vh;
     background-color: #F1F1F1;
     align-items: center;
     box-shadow: 4px 4px 40px 0px #1E1E1E;
@@ -161,7 +161,7 @@ strong{
 
 #div-signup .form-title{
     text-transform: uppercase;
-    margin: 2% 0 2% 0;
+    margin: 4vh 0 2% 0;
     font-size: 1.3em;
 }
 
@@ -335,8 +335,8 @@ strong{
         height: auto;
         padding-bottom: 4vh;
         position: fixed;
-        left: 1%;
-        top: 25%;
+        left: 50%;
+        top: 50%;
         z-index: 4;
         word-wrap: break-word;
         overflow-wrap: break-word;
