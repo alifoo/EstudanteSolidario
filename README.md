@@ -22,8 +22,8 @@ node js/server.js # rodar o server localmente
 ### Front
 
 #### Primeira etapa
-- [ ] Formulário de criação de perfil de voluntário (estudante)
-- [ ] Formulário de cadastro de usuário (cidadão)
+- [x] Formulário de criação de perfil de voluntário (estudante)
+- [x] Formulário de cadastro de usuário (cidadão)
 - [ ] Formulário de criação de solicitação de trabalho voluntário
 
 #### Segunda etapa

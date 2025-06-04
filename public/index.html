@@ -11,7 +11,7 @@
 <body>
     <header>
         <div id="div-title">
-		<a href="#" class="menu-item"><h1 id="header-title">Estudante Solidário</h1></a>
+		    <a href="#" class="menu-item"><h1 id="header-title">Estudante Solidário</h1></a>
         </div>
 
         <div id="menu-toggle">☰</div>
@@ -53,8 +53,16 @@
                 <div id="name" class="form-subdiv">
                     <label class="form-label">Nome completo</label>
                     <div class="two-input-div input-subdiv">
-                        <input type="text" id="fname" placeholder="Nome">
-                        <input type="text" id="lname" placeholder="Sobrenome">
+                        <input type="text" id="fname" placeholder="Nome" required>
+                        <input type="text" id="lname" placeholder="Sobrenome" required>
+                    </div>
+                </div>
+
+                <div id="email-password" class="form-subdiv">
+                    <label class="form-label">E-mail e senha</label>
+                    <div class="two-input-div input-subdiv">
+                        <input type="text" id="email-signup" placeholder="E-mail" required>
+                        <input type="password" id="passowrd-signup" placeholder="Senha" required>
                     </div>
                 </div>
 
@@ -115,23 +123,49 @@
                     </div>
                 </div>
 
-                <div id="student-input" class="form-subdiv two-input-div">
-                    <input type="text" id="university" placeholder="Universidade">
-                    <select name="student-area" id="student-area-select">
-                        <option value="" disabled selected>Curso</option>
-                        <option value="computacao">Ciência da Computação / Engenharia de Software</option>
-                        <option value="engenharias">Engenharias</option>
-                        <option value="biologicas">Ciências Biológicas / Saúde</option>
-                        <option value="exatas">Ciências Exatas (Física, Matemática, Química)</option>
-                        <option value="humanas">Ciências Humanas (Filosofia, História, Sociologia)</option>
-                        <option value="sociais-aplicadas">Ciências Sociais Aplicadas (Direito, Administração, Economia)</option>
-                        <option value="linguistica">Linguística / Letras / Artes</option>
-                        <option value="agrarias">Ciências Agrárias</option>
-                        <option value="ambientais">Ciências Ambientais</option>
-                        <option value="outro">Outro</option>
-                    </select>
+                <div id="student-input" class="form-subdiv">
+                    <label class="form-label">Informações de estudante</label>
+                    <div class="two-input-div">
+                        <input type="text" id="university" placeholder="Universidade">
+                        <select name="student-area" id="student-area-select">
+                            <option value="" disabled selected>Curso</option>
+                            <option value="computacao">Ciência da Computação / Engenharia de Software</option>
+                            <option value="engenharias">Engenharias</option>
+                            <option value="biologicas">Ciências Biológicas / Saúde</option>
+                            <option value="exatas">Ciências Exatas (Física, Matemática, Química)</option>
+                            <option value="humanas">Ciências Humanas (Filosofia, História, Sociologia)</option>
+                            <option value="sociais-aplicadas">Ciências Sociais Aplicadas (Direito, Administração, Economia)</option>
+                            <option value="linguistica">Linguística / Letras / Artes</option>
+                            <option value="agrarias">Ciências Agrárias</option>
+                            <option value="ambientais">Ciências Ambientais</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        <script>
+                            const userTypeSelect = document.getElementById("userType-select");
+                            const studentInput = document.getElementById("student-input");
+                            const university = document.getElementById("university");
+                            const studentArea = document.getElementById("student-area-select");
 
+                            userTypeSelect.addEventListener("change", function () {
+                                if(this.value === "estudante"){
+                                    studentInput.style.display = "flex";
+                                    university.required = true;
+                                    studentArea.required = true;
+                                    universityInput.value = "";
+                                    studentAreaSelect.value = "";
+                                }
+                                else {
+                                    studentInput.style.display = "none";
+                                    university.required = false;
+                                    studentArea.required = false;
+                                    universityInput.value = "NotStudent";
+                                    studentAreaSelect.value = "NotStudent";
+                                }
+                            })
+                        </script>
+                    </div>
                 </div>
+                
                 <button type="submit">Criar</button>
             </form>
         </div>
