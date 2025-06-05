@@ -1,7 +1,11 @@
-import { toggleMenu, loginPopUp } from "./toggle.js";
+import * as toggle from './toggle.js';
 
-document.getElementById("menu-toggle").addEventListener("click", toggleMenu);
-document.getElementById("login").addEventListener("click", loginPopUp);
+document.getElementById('menu-toggle').addEventListener('click', toggle.toggleMenu);
+document.getElementById('login').addEventListener('click', toggle.teste);
+document.querySelectorAll('.login-exit-button').forEach(button => {
+  button.addEventListener('click', toggle.exitLoginPopup);
+});
+document.getElementById('goto-signin-button').addEventListener('click', toggle.signinPopUp);
 
 async function loadPosts() {
   try {

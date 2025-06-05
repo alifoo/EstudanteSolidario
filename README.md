@@ -22,15 +22,15 @@ node js/server.js # rodar o server localmente
 ### Front
 
 #### Primeira etapa
-- [ ] Formulário de criação de perfil de voluntário (estudante)
-- [ ] Formulário de cadastro de usuário (cidadão)
+- [x] Formulário de criação de perfil de voluntário (estudante)
+- [x] Formulário de cadastro de usuário (cidadão)
 - [ ] Formulário de criação de solicitação de trabalho voluntário
 
 #### Segunda etapa
 - [ ] Tela de perfil do usuário (estudante)
 - [ ] Tela de perfil do usuário (cidadão)
 - [ ] Tela de trabalho voluntário individual
-- [ ] Tela principal do projeto, onde ficará a listagem de todos os trabalhos voluntários disponíveis
+- [x] Tela principal do projeto, onde ficará a listagem de todos os trabalhos voluntários disponíveis
 
 ### Back-end
 

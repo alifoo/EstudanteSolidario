@@ -6,18 +6,19 @@
     <title>Estudante Solidário</title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="img/logo-icon.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <div id="div-title">
-		<a href="#" class="menu-item"><h1 id="header-title">Estudante Solidário</h1></a>
+		    <a href="#" class="menu-item"><h1 id="header-title">Estudante Solidário</h1></a>
         </div>
 
         <div id="menu-toggle">☰</div>
         
         <nav id="menu">
-            <a href="#" class="menu-item"><h2 class="menu-item" class="show" id="login">Entrar</h2></a>
-            <a href="#" class="menu-item" id="profile"><h2>Perfil</h2></a>
+            <a href="#" class="menu-item" id="login"><h2>Entrar</h2></a>
+            <a href="profile.html" class="menu-item" id="profile"><h2>Perfil</h2></a>
             <a href="#" class="menu-item"><h2>Sobre o projeto</h2></a>
         </nav>
     </header>
@@ -26,15 +27,167 @@
     <main>
         <div id="div-subtitle">
             <h1 id="subtitle">Transforme seu tempo livre em impacto positivo!</h1>
-            <p id="subtitle-paragraph">Veja oportunidades de voluntariado que contam como horas complementares</p>
+            <p id="subtitle-paragraph">Participe de oportunidades de voluntariado que contam como horas complementares.</p>
+        </div>
+        <!-- /////////// -->
+        <!-- FORMULÁRIOS -->
+        <!-- /////////// -->
+        <div id="overlay"></div>
+        <div class="div-popup-form" id="div-login">
+            <img class="login-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
+            <h2 class="form-title">bem-vindo ao estudante solidário</h2>
+            <form action="">
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <button id="login-main-button" type="submit">Entrar</button>
+            </form>
+            <span>ou</span>
+            <button class="create-account-button" id="goto-signin-button">Criar nova conta</button>
         </div>
 
+        <div class="div-popup-form" id="div-signup">
+            <img class="login-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
+            <h2 class="form-title">Criar uma nova conta</h2>
+            <form action="">
+
+                <div id="name" class="form-subdiv">
+                    <label class="form-label">Nome completo</label>
+                    <div class="two-input-div input-subdiv">
+                        <input type="text" id="fname" placeholder="Nome" required>
+                        <input type="text" id="lname" placeholder="Sobrenome" required>
+                    </div>
+                </div>
+
+                <div id="email-password" class="form-subdiv">
+                    <label class="form-label">E-mail e senha</label>
+                    <div class="two-input-div input-subdiv">
+                        <input type="text" id="email-signup" placeholder="E-mail" required>
+                        <input type="password" id="passowrd-signup" placeholder="Senha" required>
+                    </div>
+                </div>
+
+                <div id="birthdate" class="form-subdiv">
+                    <label class="form-label">Data de nascimento</label>
+                    <div class="three-input-div input-subdiv">
+                        <select id="birthDay" name="birthday-day" required>
+                            <option value="" disabled selected>Dia</option>
+                            <script>
+                                for (let i = 1; i <= 31; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+
+                        <select id="birthMonth" name="birthday-month" required>
+                            <option value="" disabled selected>Mês</option>
+                            <script>
+                                const meses = [
+                                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+                                ];
+                                for (let i = 0; i < meses.length; i++) {
+                                document.write(`<option value="${i + 1}">${meses[i]}</option>`);
+                                }
+                            </script>
+                        </select>
+
+                        <select id="year" name="birthday-year" required>
+                            <option value="" disabled selected>Ano</option>
+                            <script>
+                                for (let i = 2025; i >= 1900; i--) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="gender-userType" class="form-subdiv two-input-div">
+                    <div class="two-divs form-subdiv">
+                        <label for="gender" class="form-label">Gênero</label>
+                        <select name="gender" id="gender-select" required>
+                            <option value="" disabled selected>Escolher</option>
+                            <option value="Fem">Feminino</option>
+                            <option value="Masc">Masculino</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="two-divs form-subdiv">
+                        <label for="userType" class="form-label">Perfil de</label>
+                        <select name="userType" id="userType-select" style="text-align: right;">
+                            <option value="" disabled selected>Escolher</option>
+                            <option value="estudante">Estudante</option>
+                            <option value="cidadão">Cidadão</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="student-input" class="form-subdiv">
+                    <label class="form-label">Informações de estudante</label>
+                    <div class="two-input-div">
+                        <input type="text" id="university" placeholder="Universidade">
+                        <select name="student-area" id="student-area-select">
+                            <option value="" disabled selected>Curso</option>
+                            <option value="computacao">Ciência da Computação / Engenharia de Software</option>
+                            <option value="engenharias">Engenharias</option>
+                            <option value="biologicas">Ciências Biológicas / Saúde</option>
+                            <option value="exatas">Ciências Exatas (Física, Matemática, Química)</option>
+                            <option value="humanas">Ciências Humanas (Filosofia, História, Sociologia)</option>
+                            <option value="sociais-aplicadas">Ciências Sociais Aplicadas (Direito, Administração, Economia)</option>
+                            <option value="linguistica">Linguística / Letras / Artes</option>
+                            <option value="agrarias">Ciências Agrárias</option>
+                            <option value="ambientais">Ciências Ambientais</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        <script>
+                            const userTypeSelect = document.getElementById("userType-select");
+                            const studentInput = document.getElementById("student-input");
+                            const university = document.getElementById("university");
+                            const studentArea = document.getElementById("student-area-select");
+
+                            userTypeSelect.addEventListener("change", function () {
+                                if(this.value === "estudante"){
+                                    studentInput.style.display = "flex";
+                                    university.required = true;
+                                    studentArea.required = true;
+                                    universityInput.value = "";
+                                    studentAreaSelect.value = "";
+                                }
+                                else {
+                                    studentInput.style.display = "none";
+                                    university.required = false;
+                                    studentArea.required = false;
+                                    universityInput.value = "NotStudent";
+                                    studentAreaSelect.value = "NotStudent";
+                                }
+                            })
+                        </script>
+                    </div>
+                </div>
+                
+                <button type="submit">Criar</button>
+            </form>
+        </div>
+
+
         <div id="activities">
-
-       </div>
+            <!-- ////////////////// -->
+            <!-- TESTE DE UM PEDIDO -->
+            <!-- ////////////////// -->
+            <div class="container">
+                <h2 class="activity-title">Lorem ipsum</h2>
+                <p class="activity-description">Atividade: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna aliqua.</p>
+                <p class="activity-modality">Formato: Presencial</p>
+                <button class="help-button"><span>Quero ajudar</span></button>
+            </div>
+        </div>
     </main>
-    <footer>
 
+
+    <footer>
+        <p>&#169; Todos os direitos reservados a Estudante Solidário 2025</p>
+        <p>&#169; Leão com Gás</p>
     </footer>
 
 

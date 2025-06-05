@@ -1,0 +1,7 @@
+footer{
+    display: flex;
+    flex-direction: column;
+    background-color: #2C2C2C;
+    width: 100vw;
+    align-items: center;
+}

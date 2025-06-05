@@ -1,0 +1,163 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f3f2ef;
+    color: #191919;
+    line-height: 1.6;
+}
+
+.profile-page-main {
+    padding-top: 20px;
+}
+
+.profile-layout-container {
+    max-width: 1128px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    padding: 0 15px;
+}
+
+.profile-sidebar-left {
+    flex: 0 0 300px;
+}
+
+.profile-details-right {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.profile-photo-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-photo-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px auto;
+    border: 3px solid #A8D5BA;
+    background-color: #e0e0e0;
+}
+
+.profile-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #2F5233;
+    margin-bottom: 5px;
+}
+
+.profile-headline {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.profile-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-card-header h2 {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #2F5233;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #555;
+}
+
+.profile-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.profile-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.85em;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    color: #191919;
+    font-size: 1em;
+}
+
+@media (max-width: 992px) {
+    .profile-layout-container {
+        flex-direction: column;
+    }
+
+    .profile-sidebar-left {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-photo-card {
+        padding: 15px;
+    }
+
+    .profile-photo-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-name {
+        font-size: 1.2em;
+    }
+
+    .profile-headline {
+        font-size: 0.85em;
+    }
+
+    .profile-card-header h2 {
+        font-size: 1.1em;
+    }
+
+    .profile-card-content {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .info-value {
+        font-size: 0.95em;
+    }
+}
+
+header {
+    background-color: #2C2C2C;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
