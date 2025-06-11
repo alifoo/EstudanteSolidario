@@ -2,6 +2,7 @@ footer{
     display: flex;
     flex-direction: column;
     background-color: #2C2C2C;
+    color: #F1F1F1;
     width: 100vw;
     align-items: center;
 }

@@ -27,8 +27,8 @@ node js/server.js # rodar o server localmente
 - [ ] Formulário de criação de solicitação de trabalho voluntário
 
 #### Segunda etapa
-- [ ] Tela de perfil do usuário (estudante)
-- [ ] Tela de perfil do usuário (cidadão)
+- [x] Tela de perfil do usuário (estudante)
+- [x] Tela de perfil do usuário (cidadão)
 - [ ] Tela de trabalho voluntário individual
 - [x] Tela principal do projeto, onde ficará a listagem de todos os trabalhos voluntários disponíveis
 
