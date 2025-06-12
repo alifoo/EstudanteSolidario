@@ -19,7 +19,6 @@
         <nav id="menu">
             <a href="#" class="menu-item" id="login"><h2>Entrar</h2></a>
             <a href="profile.html" class="menu-item" id="profile"><h2>Perfil</h2></a>
-            <a href="createWork.html" class="menu-item" id="create-work"><h2>Novo trabalho</h2></a>
             <a href="#" class="menu-item"><h2>Sobre o projeto</h2></a>
         </nav>
     </header>
@@ -29,6 +28,9 @@
         <div id="div-subtitle">
             <h1 id="subtitle">Transforme seu tempo livre em impacto positivo!</h1>
             <p id="subtitle-paragraph">Participe de oportunidades de voluntariado que contam como horas complementares.</p>
+        </div>
+        <div id="div-mkWork">
+            <button id="mkWork-Button">Criar nova tarefa</button>
         </div>
         <!-- /////////// -->
         <!-- FORMULÁRIOS -->
@@ -171,6 +173,34 @@
             </form>
         </div>
 
+        <div class ="div-popup-form" id="div-createWork">
+            <img class="work-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
+            <h2 class="form-title">Criar um novo trabalho</h2>
+            <form action="">
+                <input type="text" placeholder="Título do trabalho">
+                <input type="text" placeholder="Descrição da tarefa">
+                <select id="student-area-select">
+                    <option value="" disabled selected>Curso</option>
+                    <option value="computacao">Ciência da Computação / Engenharia de Software</option>
+                    <option value="engenharias">Engenharias</option>
+                    <option value="biologicas">Ciências Biológicas / Saúde</option>
+                    <option value="exatas">Ciências Exatas (Física, Matemática, Química)</option>
+                    <option value="humanas">Ciências Humanas (Filosofia, História, Sociologia)</option>
+                    <option value="sociais-aplicadas">Ciências Sociais Aplicadas (Direito, Administração, Economia)</option>
+                    <option value="linguistica">Linguística / Letras / Artes</option>
+                    <option value="agrarias">Ciências Agrárias</option>
+                    <option value="ambientais">Ciências Ambientais</option>
+                    <option value="outro">Outro</option>
+                </select>
+                <select id="pf-inst-select">
+                    <option value="" disabled selected>Instituição/Pessoa Física</option>
+                    <option value="instituicao">Instituição</option>
+                    <option value="pessoa_fisica">Pessoa física</option>
+                </select>
+                <input type="text">
+                <button type="submit">Criar</button>
+            </form>
+        </div>
 
         <div id="activities">
             <!-- ////////////////// -->

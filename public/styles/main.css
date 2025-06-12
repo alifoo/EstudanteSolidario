@@ -37,6 +37,20 @@ strong{
     margin-bottom: 3vh;
 }
 
+#div-mkWork{
+    width: 100vw;
+    padding: 10px 0;
+    text-align: center;
+}
+#div-mkWork button{
+    background-color: #138F21;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color:#ffffff;
+    cursor: pointer;
+}
+
 #login.hide{
     display: none;
 }
@@ -250,6 +264,12 @@ strong{
     height: 2.6em;
     padding-left: 0.8em;
 }
+
+
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/*                            DIV DE CRIAR TRABALHO                              */
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+
 
 
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
