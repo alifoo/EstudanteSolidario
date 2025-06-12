@@ -1,11 +1,15 @@
 import * as toggle from './toggle.js';
 
 document.getElementById('menu-toggle').addEventListener('click', toggle.toggleMenu);
-document.getElementById('login').addEventListener('click', toggle.teste);
+document.getElementById('login').addEventListener('click', toggle.loginPopUp);
 document.querySelectorAll('.login-exit-button').forEach(button => {
   button.addEventListener('click', toggle.exitLoginPopup);
 });
+document.querySelectorAll('.work-exit-button').forEach(button => {
+  button.addEventListener('click', toggle.removeWorkPopUp);
+});
 document.getElementById('goto-signin-button').addEventListener('click', toggle.signinPopUp);
+document.getElementById('mkWork-Button').addEventListener('click', toggle.createWorkPopUp);
 
 async function loadPosts() {
   try {

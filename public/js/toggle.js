@@ -32,3 +32,17 @@ export function teste(){
   login.classList.add('hide');
   profile.classList.add('show');
 }
+
+export function createWorkPopUp(){
+  const overlay = document.getElementById('overlay');
+  const divWork = document.getElementById('div-createWork');
+  overlay.classList.add('show');
+  divWork.style.display= "block";
+}
+
+export function removeWorkPopUp(){
+  const overlay = document.getElementById('overlay');
+  const divWork = document.getElementById('div-createWork');
+  overlay.classList.remove('show');
+  divWork.style.display= "none";
+}
