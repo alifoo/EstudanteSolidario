@@ -281,7 +281,7 @@
 
         <div class ="div-popup-form" id="div-createWork">
             <img class="work-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
-            <h2 class="form-title">Criar um novo trabalho</h2>
+            <h2 class="form-title">Criar uma nova tarefa</h2>
             <form action="">
                 <input type="text" placeholder="Título do trabalho">
                 <input type="text" placeholder="Descrição da tarefa">
@@ -303,7 +303,17 @@
                     <option value="instituicao">Instituição</option>
                     <option value="pessoa_fisica">Pessoa física</option>
                 </select>
-                <input type="text">
+                <label for="data">Data máxima de finalização da atividade:</label>
+                <input type="text" name="data" id="data" placeholder="DD/MM/AAAA" maxlength="10">
+
+                <script>
+                document.getElementById('data').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, ''); // Pra n ter letrad
+                if (value.length > 2) value = value.slice(0,2) + '/' + value.slice(2);
+                if (value.length > 5) value = value.slice(0,5) + '/' + value.slice(5,9);
+                e.target.value = value;
+                });
+                </script>
                 <button type="submit">Criar</button>
             </form>
         </div>
