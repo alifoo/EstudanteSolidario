@@ -38,3 +38,136 @@ async function loadPosts() {
 }
 
 document.addEventListener("DOMContentLoaded", loadPosts);
+
+
+
+
+
+// FILTROS //
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Seletores
+  const botaoPrincipal = document.querySelector('.botao-filtro:not([data-filter])');
+  const botoesDeFiltro = document.querySelectorAll('.botao-filtro[data-filter]');
+  const iconeSeta = botaoPrincipal.querySelector('.icone-seta');
+  const campoTexto = document.getElementById('filtro-texto-input');
+  const campoData = document.getElementById('filtro-data-input');
+  const selecaoArea = document.getElementById('filtro-area-select');
+  const selecaoPessoa = document.getElementById('filtro-pessoa-select');
+  const containerCamposDinamicos = document.querySelector('.container-campos-dinamicos');
+
+  let filtrosEstaoVisiveis = false;
+
+  // Esconde os botões e os campos dinâmicos inicialmente
+  botoesDeFiltro.forEach(botao => {
+      botao.classList.add('filtro-animado');
+      botao.style.display = 'none';
+  });
+
+  // Função para esconder todos os campos dinâmicos
+  const esconderCamposDinamicos = () => {
+      campoTexto.classList.remove('visivel');
+      campoData.classList.remove('visivel');
+      selecaoArea.classList.remove('visivel');
+      selecaoPessoa.classList.remove('visivel');
+      containerCamposDinamicos.style.height = '0px';
+  };
+
+  // Função para mostrar o campo dinâmico correto
+  const gerenciarCamposDinamicos = () => {
+      const filtroAtivo = document.querySelector('.botao-filtro[data-filter].ativo');
+      let campoParaMostrar = null;
+
+      // Esconde todos os campos antes de decidir qual mostrar
+      campoTexto.classList.remove('visivel');
+      campoData.classList.remove('visivel');
+      selecaoArea.classList.remove('visivel');
+      selecaoPessoa.classList.remove('visivel');
+
+      if (filtroAtivo) {
+          const tipoFiltro = filtroAtivo.getAttribute('data-filter');
+          switch (tipoFiltro) {
+              case 'universidade':
+              case 'titulo':
+                  campoTexto.placeholder = `Digite o ${tipoFiltro}...`;
+                  campoParaMostrar = campoTexto;
+                  break;
+              case 'area':
+                  campoParaMostrar = selecaoArea;
+                  break;
+              case 'pessoa':
+                  campoParaMostrar = selecaoPessoa;
+                  break;
+              case 'data':
+                  campoParaMostrar = campoData;
+                  break;
+          }
+      }
+
+      if (campoParaMostrar) {
+          campoParaMostrar.classList.add('visivel');
+          // A altura do campo é calculada como 2*padding + altura da linha. 
+          // 46px é um bom valor para a maioria dos navegadores.
+          containerCamposDinamicos.style.height = '46px';
+      } else {
+          containerCamposDinamicos.style.height = '0px';
+      }
+  };
+
+  // Função principal para mostrar/esconder os filtros
+  const toggleFiltros = () => {
+      filtrosEstaoVisiveis = !filtrosEstaoVisiveis;
+
+      if (filtrosEstaoVisiveis) {
+          botoesDeFiltro.forEach((botao, index) => {
+              botao.style.display = 'flex';
+              setTimeout(() => {
+                  botao.classList.remove('filtro-animado');
+              }, 20 + index * 40);
+          });
+      } else {
+          botoesDeFiltro.forEach(botao => {
+              botao.classList.add('filtro-animado');
+              botao.classList.remove('ativo');
+              setTimeout(() => {
+                  if (!filtrosEstaoVisiveis) {
+                      botao.style.display = 'none';
+                  }
+              }, 300);
+          });
+          esconderCamposDinamicos();
+      }
+
+      if (iconeSeta) {
+          iconeSeta.style.transform = filtrosEstaoVisiveis ? 'rotate(90deg)' : 'rotate(0deg)';
+      }
+  };
+
+  // Event listener para o botão principal
+  botaoPrincipal.addEventListener('click', toggleFiltros);
+
+  // Event listeners para os botões de filtro individuais
+  botoesDeFiltro.forEach(botao => {
+      botao.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const estavaAtivo = botao.classList.contains('ativo');
+          botoesDeFiltro.forEach(btn => btn.classList.remove('ativo'));
+          if (!estavaAtivo) {
+              botao.classList.add('ativo');
+          }
+          gerenciarCamposDinamicos();
+
+          const tipoFiltro = botao.getAttribute('data-filter');
+          if (botao.classList.contains('ativo')) {
+              console.log(`Filtro selecionado: ${tipoFiltro}`);
+          } else {
+              console.log(`Filtro '${tipoFiltro}' desativado.`);
+          }
+      });
+  });
+  
+  // Inicia com os filtros escondidos
+  toggleFiltros();
+  toggleFiltros();
+});
+// FIM / FILTROS //
