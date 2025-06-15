@@ -6,7 +6,10 @@
     <title>Meu Perfil - Estudante Solidário</title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 <body>
     <header>
@@ -25,10 +28,50 @@
             <aside class="profile-sidebar-left">
                 <div class="profile-card profile-photo-card">
                     <div class="profile-photo-wrapper">
-                        <img src="Imagens/perfil sem foto.png" alt="Foto do Perfil" id="user-photo-img">
+                        <img src="img/anaclara.webp" alt="Foto do Perfil" id="user-photo-img">
                     </div>
-                    <h3 id="user-fullname-placeholder" class="profile-name">Seu Nome Aqui</h3>
-                    <p id="user-headline-placeholder" class="profile-headline">Seu Curso ou Título</p>
+                    <h3 class="profile-name">Ana Silva</h3>
+                    <p class="profile-headline">Acadêmica de Ciência da Computação</p>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <h2>Sobre Mim</h2>
+                        <button id="edit-description-btn" class="profile-edit-btn">Editar</button>
+                    </div>
+                    <div class="profile-card-content">
+                        <p id="user-description">Olá! Sou estudante de Ciência da Computação na PUCPR, apaixonada por tecnologia e inovação. Busco oportunidades para aplicar meus conhecimentos em projetos desafiadores e colaborar com outros estudantes.</p>
+                        <textarea id="edit-description-textarea" class="hidden"></textarea>
+                        <button id="save-description-btn" class="save-button hidden">Salvar</button>
+                    </div>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <h2>Interesses de Colaboração</h2>
+                    </div>
+                    <div class="profile-card-content collaboration-section">
+                        <div class="collaboration-list">
+                            <h4>Posso Ajudar Com:</h4>
+                            <ul>
+                                <li>Cálculo I</li>
+                                <li>Desenvolvimento Web (HTML, CSS)</li>
+                                <li>Lógica de Programação</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <h2>Links e Redes</h2>
+                    </div>
+                    <div class="profile-card-content social-links-container">
+                        <a href="#" class="social-link github" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link portfolio" title="Portfólio"><i class="fas fa-globe"></i></a>
+                        <a href="#" class="social-link insta" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </aside>
 
@@ -40,35 +83,60 @@
                     <div class="profile-card-content">
                         <div class="profile-info-item">
                             <span class="info-label">Nome Completo:</span>
-                            <span class="info-value" id="user-nome-completo">Carregando...</span>
+                            <span class="info-value">Ana Silva</span>
                         </div>
                         <div class="profile-info-item">
                             <span class="info-label">Data de Nascimento:</span>
-                            <span class="info-value" id="user-data-nascimento">Carregando...</span>
+                            <span class="info-value">15/08/2002</span>
                         </div>
                         <div class="profile-info-item">
                             <span class="info-label">Gênero:</span>
-                            <span class="info-value" id="user-genero">Carregando...</span>
+                            <span class="info-value">Feminino</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="profile-card" id="academic-info-card">
                     <div class="profile-card-header">
-                        <h2>Informações Acadêmicas/Profissionais</h2>
+                        <h2>Informações Acadêmicas</h2>
                     </div>
                     <div class="profile-card-content">
                         <div class="profile-info-item">
-                            <span class="info-label">Tipo de Usuário:</span>
-                            <span class="info-value" id="user-tipo">Carregando...</span>
-                        </div>
-                        <div class="profile-info-item" id="info-universidade" style="display: none;">
                             <span class="info-label">Universidade:</span>
-                            <span class="info-value" id="user-universidade">Carregando...</span>
+                            <span class="info-value">PUCPR - Pontifícia Universidade Católica do Paraná.</span>
                         </div>
-                        <div class="profile-info-item" id="info-area-curso" style="display: none;">
+                        <div class="profile-info-item">
                             <span class="info-label">Área do Curso:</span>
-                            <span class="info-value" id="user-area-curso">Carregando...</span>
+                            <span class="info-value">Ciência da Computação</span>
+                        </div>
+                        <div class="profile-info-item">
+                            <span class="info-label">Período:</span>
+                            <span class="info-value">4º Período</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <h2>Habilidades</h2>
+                    </div>
+                    <div class="profile-card-content">
+                        <div class="skills-container">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">Jest</span>
+                            <span class="skill-tag">Git & GitHub</span>
+                            <span class="skill-tag">Trabalho em Equipe</span>
+                            <span class="skill-tag">Comunicação</span>
+                            <span class="skill-tag">Resolução de Problemas</span>
                         </div>
                     </div>
                 </div>
@@ -81,38 +149,33 @@
         <p>&copy; Leão com Gás</p>
     </footer>
 
-    <script type="module" src="./js/main.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
     <script>
-
         document.addEventListener('DOMContentLoaded', () => {
-            // Exemplo de dados depois 
-            const userData = {
-                nome: "Ana",
-                sobrenome: "Silva",
-                dataNascimento: "15/08/2002",
-                genero: "Feminino",
-                tipoUsuario: "Estudante", 
-                universidade: "Universidade Federal Exemplo (UFE)",
-                areaCurso: "Ciência da Computação",
+            const editBtn = document.getElementById('edit-description-btn');
+            const saveBtn = document.getElementById('save-description-btn');
+            const descriptionP = document.getElementById('user-description');
+            const descriptionTextarea = document.getElementById('edit-description-textarea');
 
-            };
+            if (editBtn) {
+                editBtn.addEventListener('click', () => {
+                    descriptionTextarea.value = descriptionP.innerText;
+                    descriptionP.classList.add('hidden');
+                    editBtn.classList.add('hidden');
+                    descriptionTextarea.classList.remove('hidden');
+                    saveBtn.classList.remove('hidden');
+                });
+            }
 
-            document.getElementById('user-fullname-placeholder').textContent = `${userData.nome} ${userData.sobrenome}`;
-            document.getElementById('user-headline-placeholder').textContent = userData.tipoUsuario === "Estudante" ? userData.areaCurso : "Cidadão Solidário";
-            
-
-            document.getElementById('user-nome-completo').textContent = `${userData.nome} ${userData.sobrenome}`;
-            document.getElementById('user-data-nascimento').textContent = userData.dataNascimento;
-            document.getElementById('user-genero').textContent = userData.genero;
-            document.getElementById('user-tipo').textContent = userData.tipoUsuario;
-
-            if (userData.tipoUsuario === "Estudante") {
-                const uniDiv = document.getElementById('info-universidade');
-                const cursoDiv = document.getElementById('info-area-curso');
-                uniDiv.style.display = 'flex'; 
-                cursoDiv.style.display = 'flex';
-                document.getElementById('user-universidade').textContent = userData.universidade;
-                document.getElementById('user-area-curso').textContent = userData.areaCurso;
+            if (saveBtn) {
+                saveBtn.addEventListener('click', () => {
+                    descriptionP.innerText = descriptionTextarea.value;
+                    descriptionP.classList.remove('hidden');
+                    editBtn.classList.remove('hidden');
+                    descriptionTextarea.classList.add('hidden');
+                    saveBtn.classList.add('hidden');
+                });
             }
         });
     </script>
