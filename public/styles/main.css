@@ -1,7 +1,29 @@
 body{
-    background-color: #F1F1F1;
     overflow-x: hidden;
+            font-family: var(--font-family-sans);
+            background-color: var(--color-light-bg);
+            color: var(--color-text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;    font-family: var(--font-family-sans);
 }
+
+:root {
+--color-green: #10B981;
+--color-green-light: #A7F3D0;
+--color-green-dark: #047857;
+
+--color-dark: #1F2937;
+--color-dark-light: #4B5563;
+            
+--color-light-bg: #f8fafc; 
+--color-text-primary: #1F2937;
+--color-text-secondary: #4B5563;
+--color-white: #ffffff;
+
+--font-family-sans: 'Inter', sans-serif;
+}
+
+
 
 form{
     display: flex;
@@ -15,40 +37,80 @@ strong{
     font-weight: bold !important;
 }
 
+/* TRANSFORME SEU TEMPO LIVRE... */ 
 
-#div-subtitle{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100vw;
-    min-height: 20vh;
-    background-color: #A8D5BA;
-    color: #2F5233;
-}
 
-#subtitle{
-    font-size: 2em;
-    margin-top: 3vh;
-}
+        .site-header {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            padding: 0rem 0; /* 16px vertical */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            font-family: var(--font-family-sans);
+        }
 
-#subtitle-paragraph{
-    font-size: 1em;
-    margin-bottom: 3vh;
-}
+        .site-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
+
+        .hero-section {
+            background-color: var(--color-green);
+            color: var(--color-white);
+            text-align: center;
+            padding-top: 5rem;    /* 80px */
+            padding-bottom: 5rem; /* 80px */
+        }
+
+        .hero-title {
+            font-family: var(--font-family-sans);
+            font-size: 2.25rem; /* 36px */
+            font-weight: 800;
+            margin-bottom: 1rem; /* 16px */
+            line-height: 1.2;
+        }
+        
+        .hero-title .highlight {
+            color: var(--color-green-light);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-family-sans);
+            font-size: 1.125rem; /* 18px */
+            color: #d1fae5; /* emerald-100 */
+            max-width: 48rem; /* 768px */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+/* botão de criar nova tarefa */ 
 #div-mkWork{
     width: 100vw;
     padding: 10px 0;
     text-align: center;
 }
 #div-mkWork button{
-    background-color: #138F21;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid black;
-    color:#ffffff;
-    cursor: pointer;
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            font-size: 1rem; /* 18px */
+            font-weight: 700;
+            padding: 1rem 2rem; /* 16px 32px */
+            border: none;
+            border-radius: 20px; /* Efeito "pill" */
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            font-family: var(--font-family-sans);
+}
+#div-mkWork button:hover{
+            background-color: var(--color-dark-light);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
 }
 
 #login.hide{
@@ -304,20 +366,21 @@ strong{
 .help-button {
     position: relative;
     overflow: hidden;
-    background-color: #2F5233;
-    color: #d0f0dd;
+    background-color: var(--color-green);
+    color: #ffffff;
     border: none;
-    width: 130px;
+    width: 150px;
     border-radius: 4px;
     padding: 10px 25px;
     margin-left: 10px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.20);
-    cursor: pointer;
+    cursor: pointer;;
+    font-weight: 800;
 }
 .help-button::before {
     content: "";
     position: absolute;
-    background: #16cf2b;
+    background: #ffffff;
     border-radius: 50%;
     width: 0;
     height: 0;
@@ -332,12 +395,13 @@ strong{
     height: 300px;
 }
 .help-button:hover{
-    color: #ffffff;
+    color: var(--color-green);
 }
 .help-button span {
     position: relative;
     z-index: 1;
 }
+
 
 
 
@@ -401,43 +465,34 @@ strong{
 /*                                 DIV DOS FILTROS                               */
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
-
-        /* Caixa Principal dos Filtros */
+        
         .caixa-filtros {
             width: 100%;
             max-width: 96.5%;
             margin-left: auto;
             margin-right: auto;
         }
-
         .caixa-filtros-titulo {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 1rem;
             color: #1f2937;
         }
-
-        /* Barra com as Opções de Filtro */
         .barra-opcoes-filtro {
             display: grid;
             gap: 0.75rem;
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-
-        /* Media queries para responsividade */
         @media (min-width: 640px) {
             .barra-opcoes-filtro {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
-
         @media (min-width: 1024px) {
             .barra-opcoes-filtro {
                 grid-template-columns: repeat(6, minmax(0, 1fr));
             }
         }
-
-        /* Estilo dos Botões de Filtro */
         .botao-filtro {
             display: flex;
             align-items: center;
@@ -452,49 +507,38 @@ strong{
             width: 100%;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, opacity 0.3s ease-out, transform 0.3s ease-out;
         }
-
         .botao-filtro:hover {
             background-color: #f3f4f6;
         }
         
-        /* Classe para animar a aparição dos botões */
         .filtro-animado {
             opacity: 0;
             transform: translateY(-10px);
             pointer-events: none;
         }
-
-        /* Estilo do botão quando está ativo (selecionado) */
         .botao-filtro.ativo {
             border-color: #99C7B1;
             background-color: #AEDFC4;
         }
-
         .botao-filtro.ativo .icone-filtro,
         .botao-filtro.ativo .botao-filtro-titulo {
             color: #2E7D32;
         }
-
-        /* Caixa de texto dentro do botão */
         .botao-filtro-texto {
             margin-left: 0.75rem;
             flex-grow: 1;
         }
-
         .botao-filtro-titulo {
             font-weight: 600;
             color: #1f2937;
             margin: 0;
             transition: color 0.2s ease-in-out;
         }
-
         .botao-filtro-subtitulo {
             font-size: 0.75rem;
             color: #6b7280;
             margin: 0;
         }
-
-        /* Ícones SVG */
         .icone-seta {
             height: 1.25rem;
             width: 1.25rem;
@@ -502,7 +546,6 @@ strong{
             flex-shrink: 0;
             transition: transform 0.2s ease-in-out;
         }
-
         .icone-filtro {
             height: 2rem;
             width: 2rem;
@@ -510,8 +553,6 @@ strong{
             flex-shrink: 0;
             transition: color 0.2s ease-in-out;
         }
-
-        /* Container para os campos dinâmicos */
         .container-campos-dinamicos {
             position: relative;
             height: 0;
@@ -520,7 +561,6 @@ strong{
             margin-top: 0.75rem;
         }
         
-        /* Estilos para campos dinâmicos (input e select) */
         .campo-dinamico {
             position: absolute;
             top: 0;
@@ -543,8 +583,6 @@ strong{
             transform: translateY(0);
             pointer-events: auto;
         }
-
-        /* Estilo para remover a aparência padrão do select e adicionar seta customizada */
         .select-customizado {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -555,3 +593,5 @@ strong{
             background-size: 1.5em;
             padding-right: 2.5rem;
         }
+
+
