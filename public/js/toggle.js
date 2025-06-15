@@ -26,13 +26,6 @@ export function signinPopUp(){
   signinPopUp.classList.add('show');
 }
 
-export function teste(){
-  const login = document.getElementById("login");
-  const profile = document.getElementById("profile");
-  login.classList.add('hide');
-  profile.classList.add('show');
-}
-
 export function createWorkPopUp(){
   const overlay = document.getElementById('overlay');
   const divWork = document.getElementById('div-createWork');
