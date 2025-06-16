@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o Projeto - Estudante Solidário</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <div id="div-title">
+            <a href="index.html" class="menu-item"><h1 id="header-title">Estudante Solidário</h1></a>
+        </div>
+        <div id="menu-toggle">☰</div>
+        <nav id="menu">
+            <a href="index.html" class="menu-item"><h2>Início</h2></a>
+            <a href="profile.html" class="menu-item" id="profile"><h2>Perfil</h2></a>
+        </nav>
+    </header>
+
+    <main class="about-page-main">
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <h1>Estudante Solidário</h1>
+                <p>Um marketplace de trabalhos voluntários conectando o conhecimento acadêmico às necessidades da comunidade.</p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Nossa Missão</h2>
+            <p>Nosso objetivo é proporcionar um ambiente online para a candidatura a trabalhos voluntários por parte de estudantes universitários e facilitar a busca por voluntários por parte do cidadão comum. Criamos uma plataforma onde estudantes podem se cadastrar usando seus e-mails educacionais para encontrar oportunidades, ganhar experiência e receber horas complementares, enquanto cidadãos e ONGs encontram o apoio necessário para seus projetos sociais.</p>
+        </section>
+
+        <section class="about-section how-it-works">
+            <h2>Como Funciona</h2>
+            <div class="how-it-works-container">
+                <div class="how-it-works-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Para Estudantes</h3>
+                    <p>Jovens universitários matriculados que buscam causar um impacto positivo e, ao mesmo tempo, validar horas complementares. Cadastre-se, encontre vagas e faça a diferença!</p>
+                </div>
+                <div class="how-it-works-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Para a Comunidade</h3>
+                    <p>Cidadãos, lideranças comunitárias ou ONGs que precisam de ajuda voluntária para seus projetos. Publique sua necessidade e conecte-se com usuarios motivados.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section alternate-bg">
+            <h2>O Time por Trás do Projeto</h2>
+            <p>O Estudante Solidário é um projeto idealizado e desenvolvido por um time de 5 estudantes.</p>
+            <div class="team-container">
+                <span class="team-member">Marcos</span>
+                <span class="team-member">Alisson</span>
+                <span class="team-member">Rhyan</span>
+                <span class="team-member">Augusto</span>
+                <span class="team-member">Nathan</span>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Identidade Visual</h2>
+            <p>Nosso design é minimalista e moderno, com foco no conteúdo. A cor corporativa foi escolhida por remeter ao bem-estar social e à sustentabilidade que desejamos promover.</p>
+        </section>
+
+        <section class="about-section alternate-bg">
+            <h2>Visão de Futuro</h2>
+            <div class="vision-container">
+                <div class="vision-item">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                    <h4>Expansão</h4>
+                    <p>Inicialmente focado no estado do Paraná, nosso objetivo é expandir o catálogo para incluir outras universidades e atender fora do estado.</p>
+                </div>
+                <div class="vision-item">
+                    <i class="fas fa-link"></i>
+                    <h4>Integração</h4>
+                    <p>Buscamos integrar a plataforma com os sistemas de gestão acadêmica das universidades para agilizar o cadastro e a verificação dos estudantes.</p>
+                </div>
+                <div class="vision-item">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Aprimoramento Contínuo</h4>
+                    <p>Realizaremos manutenções constantes para garantir a segurança, otimizar o desempenho e implementar novas funcionalidades de forma interativa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Nossos Valores</h2>
+            <div class="values-container">
+                <div class="value-item"><strong>Solidariedade:</strong> Acreditamos no poder da ajuda mútua.</div>
+                <div class="value-item"><strong>Aprendizado:</strong> O conhecimento cresce quando é compartilhado.</div>
+                <div class="value-item"><strong>Bem-Estar Social:</strong> Buscamos proporcionar bem-estar através da interação e solução de problemas.</div>
+                <div class="value-item"><strong>Sustentabilidade:</strong> Desejamos promover um futuro onde a sociedade seja proativa para resolver seus desafios.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Todos os direitos reservados a Estudante Solidário 2025</p>
+        <p>&copy; Leão com Gás</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

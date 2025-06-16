@@ -1,6 +1,7 @@
-
+/* Estilos Gerais e da Página de Perfil */
 body {
     font-family: 'Inter', sans-serif;
+    /* EFEITO SUTIL: Um gradiente suave no fundo para mais profundidade */
     background-image: linear-gradient(to bottom, #fdfdfd, #f3f2ef);
     color: #191919;
     line-height: 1.6;
@@ -27,15 +28,19 @@ body {
     min-width: 0;
 }
 
-
+/* EFEITO DE "FLUTUAR" NOS CARDS */
 .profile-card {
     background-color: #fff;
-    border-radius: 12px;
+    border-radius: 12px; /* Aumentei um pouco o arredondamento */
     border: 1px solid #e0e0e0;
     margin-bottom: 20px;
+    /* SOMBRA MAIS SUAVE E MODERNA */
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    /* TRANSIÇÃO PARA EFEITOS DE HOVER */
     transition: all 0.3s ease-in-out;
 }
+
+/* EFEITO AO PASSAR O MOUSE */
 .profile-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
@@ -53,9 +58,9 @@ body {
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 15px auto;
-    border: 4px solid #10B981; 
+    border: 4px solid #10B981; /* Borda um pouco mais grossa */
     background-color: #e0e0e0;
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); 
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); /* Brilho suave na foto */
 }
 
 .profile-photo-wrapper img {
@@ -65,15 +70,15 @@ body {
 }
 
 .profile-name {
-    font-size: 1.6em; 
+    font-size: 1.6em; /* Aumentei um pouco para mais destaque */
     font-weight: 700;
     color: #059669;
     margin-bottom: 5px;
 }
 
 .profile-headline {
-    font-weight: 500; 
-    font-size: 1em; 
+    font-weight: 500; /* CORRIGIDO: Valor máximo é 900, 500 é um bom peso médio */
+    font-size: 1em; /* Aumentei um pouco */
     color: #555;
     margin-bottom: 15px;
 }
@@ -88,7 +93,7 @@ body {
 
 .profile-card-header h2 {
     font-size: 1.2em;
-    font-weight: 700; 
+    font-weight: 700; /* Títulos mais fortes */
     color: #059669;
 }
 
@@ -100,25 +105,26 @@ body {
 }
 
 .info-label {
-    font-weight: 700; 
+    font-weight: 700; /* Rótulos em negrito para melhor leitura */
     color: #333;
     font-size: 0.85em;
     margin-bottom: 4px;
-    text-transform: uppercase; 
+    text-transform: uppercase; /* Deixa os rótulos mais formais */
 }
 
 .info-value {
     color: #191919;
-    font-weight: 400; 
+    font-weight: 400; /* Peso normal para o valor */
     font-size: 1em;
 }
 
+/* SEÇÃO "SOBRE MIM" E EDIÇÃO */
 #user-description {
     color: #333;
     font-size: 0.95em;
     white-space: pre-wrap;
     line-height: 1.6;
-    font-weight: 400; 
+    font-weight: 400; /* CORRIGIDO: Peso de leitura normal */
 }
 
 #edit-description-textarea {
@@ -127,7 +133,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 6px;
     padding: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; /* Garante que a fonte seja a mesma */
     font-size: 0.95em;
     resize: vertical;
     box-sizing: border-box;
@@ -171,16 +177,17 @@ body {
     display: none !important;
 }
 
+/* HABILIDADES (SKILLS) COM MAIS VIDA */
 .skills-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 10px; /* Aumentei o espaçamento */
 }
 
 .skill-tag {
-    background-color: #eefbf5; 
-    color: #059669; 
-    border: 1px solid #a7f3d0; 
+    background-color: #eefbf5; /* Fundo verde bem claro */
+    color: #059669; /* Texto verde escuro */
+    border: 1px solid #a7f3d0; /* Borda verde clara */
     padding: 6px 14px;
     border-radius: 16px;
     font-size: 0.85em;
@@ -195,6 +202,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* INTERESSES DE COLABORAÇÃO */
 .collaboration-section {
     gap: 24px;
 }
@@ -218,9 +226,9 @@ body {
     padding-left: 1.2em;
     position: relative;
 }
-
+/* MARCADORES PERSONALIZADOS PARA LISTAS */
 .collaboration-list li::before {
-    content: '✓'; 
+    content: '✓'; /* Ou '•', '→' */
     position: absolute;
     left: 0;
     color: #10B981;
@@ -228,6 +236,7 @@ body {
 }
 
 
+/* LINKS SOCIAIS COM ÍCONES */
 .social-links-container {
     flex-direction: row;
     justify-content: center;
@@ -241,23 +250,24 @@ body {
     justify-content: center;
     text-decoration: none;
     color: white;
-    width: 44px;
-    height: 44px; 
-    border-radius: 50%;
+    width: 44px;  /* Tamanho fixo para círculo perfeito */
+    height: 44px; /* Tamanho fixo para círculo perfeito */
+    border-radius: 50%; /* Deixa os links redondos */
     transition: all 0.2s ease;
-    font-size: 1.2em; 
+    font-size: 1.2em; /* Tamanho do ícone */
 }
 
 .social-link:hover {
-    transform: translateY(-3px) scale(1.1);
+    transform: translateY(-3px) scale(1.1); /* Efeito de saltar e crescer */
     filter: brightness(1.1);
 }
 
 .social-link.github { background-color: #333; }
 .social-link.linkedin { background-color: #0077B5; }
 .social-link.portfolio { background-color: #e74c3c; }
-.social-link.insta { background-color: #E1306C; }
+.social-link.insta { background-color: #E1306C; } /* Cor mais fiel do Instagram */
 
+/* RESPONSIVIDADE */
 @media (max-width: 992px) {
     .profile-layout-container {
         flex-direction: column;
@@ -271,10 +281,10 @@ body {
 @media (max-width: 600px) {
     .profile-photo-card { padding: 15px; }
     .profile-photo-wrapper { width: 120px; height: 120px; }
-    .profile-name { font-size: 1.4em; }
+    .profile-name { font-size: 1.4em; } /* Mantém o nome com destaque */
     .profile-headline { font-size: 0.9em; }
     .profile-card-header h2 { font-size: 1.1em; }
     .profile-card-content { padding: 15px; gap: 15px; }
     .info-value { font-size: 0.95em; }
-    .social-links-container { flex-direction: row; } 
+    .social-links-container { flex-direction: row; } /* Mantém lado a lado em mobile */
 }
