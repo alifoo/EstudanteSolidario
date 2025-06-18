@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
+// GET all posts (accessible at /posts/ or /api/posts/)
 router.get("/", (req, res) => {
   db.all("SELECT * FROM posts ORDER BY created_at DESC", [], (err, rows) => {
     if (err) {
@@ -11,13 +12,38 @@ router.get("/", (req, res) => {
   });
 });
 
+// POST create new post (accessible at /posts/ or /api/posts/)
+router.post("/", async (req, res) => {
+  try {
+    const { title, content, course, creator_type } = req.body;
+    const user_id = 1; // You should get this from authentication
+    
+    const result = await db.run(
+      'INSERT INTO posts (user_id, title, content, course, creator_type) VALUES (?, ?, ?, ?, ?)',
+      [user_id, title, content, course, creator_type]
+    );
+    
+    res.status(201).json({
+      id: result.lastID,
+      title,
+      content,
+      course,
+      creator_type,
+      created_at: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error creating post:', error);
+    res.status(500).json({ error: 'Failed to create post' });
+  }
+});
+
+// HTML feed route (accessible at /posts/feed or /api/posts/feed)
 router.get("/feed", (req, res) => {
   db.all("SELECT * FROM posts ORDER BY created_at DESC", [], (err, rows) => {
     if (err) {
       return res.status(500).send("Erro ao carregar posts.");
     }
 
-    // Build HTML manually
     let html = "<h1>Feed</h1>";
     rows.forEach((post) => {
       html += `
@@ -30,34 +56,6 @@ router.get("/feed", (req, res) => {
     });
 
     res.send(html);
-  });
-});
-
-router.post("/", (req, res) => {
-  const { user_id, title, content } = req.body;
-
-  if (!user_id || !content) {
-    return res
-      .status(400)
-      .json({ error: "user_id e content são obrigatórios." });
-  }
-
-  const createdAt = new Date().toISOString();
-
-  const query = `
-    INSERT INTO posts (user_id, title, content, created_at)
-    VALUES (?, ?, ?, ?)
-  `;
-
-  db.run(query, [user_id, title, content, createdAt], function (err) {
-    if (err) {
-      return res.status(500).json({ error: "Erro ao criar post." });
-    }
-
-    res.status(201).json({
-      message: "Post criado com sucesso!",
-      post_id: this.lastID,
-    });
   });
 });
 

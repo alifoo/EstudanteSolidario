@@ -15,14 +15,29 @@ db.serialize(() => {
     )
   `);
 
-  db.run(`CREATE TABLE IF NOT EXISTS posts (
+  db.run(`
+    CREATE TABLE IF NOT EXISTS posts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      title TEXT NOT NULL,
+      content TEXT NOT NULL,
+      course TEXT,
+      creator_type TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    )
+  `);
+
+  db.run(`CREATE TABLE IF NOT EXISTS participations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    title TEXT NOT NULL,
-    content TEXT NOT NULL,
+    user_id INTEGER NOT NULL,
+    post_id INTEGER NOT NULL,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    UNIQUE(user_id, post_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (post_id) REFERENCES posts(id)
   )`);
+
 });
 
 module.exports = db;

@@ -298,10 +298,10 @@
     <div class="div-popup-form" id="div-createWork">
         <img class="work-exit-button" src="img/close-icon.png" alt="ícone para fechar a tela de entrar na conta">
         <h2 class="form-title">Criar um novo trabalho</h2>
-        <form action="">
-            <input type="text" placeholder="Título do trabalho">
-            <input type="text" placeholder="Descrição da tarefa">
-            <select id="student-area-select">
+        <form id="create-task-form">
+            <input type="text" id="task-title" placeholder="Título do trabalho">
+            <input type="text" id="task-description" placeholder="Descrição da tarefa">
+            <select id="task-course" required>
                 <option value="" disabled selected>Curso</option>
                 <option value="computacao">Ciência da Computação / Engenharia de Software</option>
                 <option value="engenharias">Engenharias</option>
@@ -314,7 +314,7 @@
                 <option value="ambientais">Ciências Ambientais</option>
                 <option value="outro">Outro</option>
             </select>
-            <select id="pf-inst-select">
+            <select id="task-creator-type" required>
                 <option value="" disabled selected>Instituição/Pessoa Física</option>
                 <option value="instituicao">Instituição</option>
                 <option value="pessoa_fisica">Pessoa física</option>

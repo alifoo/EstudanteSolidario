@@ -12,18 +12,66 @@ document.querySelectorAll('.work-exit-button').forEach(button => {
 document.getElementById('goto-signin-button').addEventListener('click', toggle.signinPopUp);
 document.getElementById('mkWork-Button').addEventListener('click', toggle.createWorkPopUp);
 
+// Variable to store current post ID for modal
+let currentPostId = null;
+
+// Function to get current user ID (you'll need to implement user authentication)
+function getCurrentUserId() {
+    // This is a placeholder - you'll need to implement proper user authentication
+    // For now, you could store user ID in localStorage after login
+    // or get it from a session/JWT token
+    return localStorage.getItem('userId') || null;
+}
+
+// Function to check if user is logged in
+function isUserLoggedIn() {
+    return getCurrentUserId() !== null;
+}
+
+// Function to save participation to database
+async function saveParticipation(postId, userId) {
+    try {
+        const response = await fetch('/participations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                post_id: postId,
+                user_id: userId
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            if (response.status === 409) {
+                throw new Error('Você já está participando desta tarefa!');
+            } else if (response.status === 404) {
+                throw new Error('Tarefa ou usuário não encontrado.');
+            } else {
+                throw new Error(data.error || 'Erro ao registrar participação.');
+            }
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Error saving participation:', error);
+        throw error;
+    }
+}
+
 // Função para carregar e exibir os posts do backend
 async function loadPosts() {
     try {
         const response = await fetch("/posts");
         if (!response.ok) {
-            // Se a resposta não for OK, lança um erro para ser pego pelo catch
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const posts = await response.json();
         const container = document.getElementById("activities");
-        container.innerHTML = ""; // Limpa os cards existentes antes de adicionar os novos
+        container.innerHTML = "";
 
         if (posts.length === 0) {
             container.innerHTML = "<p>Nenhuma tarefa encontrada no momento.</p>";
@@ -31,7 +79,6 @@ async function loadPosts() {
         }
 
         posts.forEach((post) => {
-            // Usando a nova estrutura de .task-card com os dados do post
             const postHTML = `
                 <div class="task-card" data-id="${post.id}">
                     <img class="task-card-image" src="https://placehold.co/600x400/10B981/ffffff?text=Voluntariado" alt="Imagem da Tarefa">
@@ -46,7 +93,7 @@ async function loadPosts() {
                                 <span>Postado em: ${new Date(post.created_at).toLocaleDateString()}</span>
                             </div>
                         </div>
-                        <button class="help-button"><span>Quero ajudar</span></button>
+                        <button class="help-button" data-post-id="${post.id}"><span>Quero ajudar</span></button>
                     </div>
                 </div>
             `;
@@ -55,14 +102,65 @@ async function loadPosts() {
     } catch (err) {
         console.error("Erro ao carregar posts:", err);
         const container = document.getElementById("activities");
-        // Exibe a mensagem de erro para o usuário
         container.innerHTML = "<p>Ocorreu um erro ao carregar as tarefas. Tente novamente mais tarde.</p>";
     }
 }
 
+
+
 // Lógica principal executada quando o HTML estiver pronto
 document.addEventListener("DOMContentLoaded", () => {
-    // Carrega os posts assim que a página é carregada
+    document.getElementById('create-task-form').addEventListener('submit', async function(e) {
+      e.preventDefault(); // Prevent the default form submission
+      
+      // Get form values
+      const title = document.getElementById('task-title').value;
+      const description = document.getElementById('task-description').value;
+      const course = document.getElementById('task-course').value;
+      const creatorType = document.getElementById('task-creator-type').value;
+      
+      // Get current user ID
+      const userId = getCurrentUserId();
+      
+      if (!userId) {
+	  alert('Você precisa estar logado para criar uma tarefa!');
+	  return;
+      }
+      
+      try {
+	  // Send the data to your backend
+	  const response = await fetch('/posts', {
+	      method: 'POST',
+	      headers: {
+		  'Content-Type': 'application/json',
+	      },
+	      body: JSON.stringify({
+		  title,
+		  content: description,
+		  course,
+		  creator_type: creatorType,
+		  user_id: userId
+	      })
+	  });
+	  
+	  if (!response.ok) {
+	      throw new Error('Erro ao criar a tarefa');
+	  }
+	  
+	  const newPost = await response.json();
+	  
+	  // Close the popup and refresh the posts
+	  toggle.removeWorkPopUp();
+	  loadPosts();
+	  
+	  // Clear the form
+	  document.getElementById('create-task-form').reset();
+	  
+      } catch (error) {
+	  console.error('Error creating task:', error);
+	  alert('Ocorreu um erro ao criar a tarefa. Por favor, tente novamente.');
+      }
+  });
     loadPosts();
 
     // --- LÓGICA DOS FILTROS --- //
@@ -164,7 +262,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmBtn = document.getElementById('confirm-button');
     const activitiesContainer = document.getElementById('activities');
 
-    const openModal = () => {
+    const openModal = (postId) => {
+        currentPostId = postId;
         if (modalOverlay && helpModal) {
             modalOverlay.classList.add('visible');
             helpModal.classList.add('visible');
@@ -172,6 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const closeModal = () => {
+        currentPostId = null;
         if (modalOverlay && helpModal) {
             modalOverlay.classList.remove('visible');
             helpModal.classList.remove('visible');
@@ -181,7 +281,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (activitiesContainer) {
         activitiesContainer.addEventListener('click', (event) => {
             if (event.target.closest('.help-button')) {
-                openModal();
+                const button = event.target.closest('.help-button');
+                const postId = button.getAttribute('data-post-id');
+                
+                // Check if user is logged in
+                if (!isUserLoggedIn()) {
+                    alert('Você precisa estar logado para participar de uma tarefa!');
+                    return;
+                }
+                
+                openModal(postId);
             }
         });
     }
@@ -191,9 +300,40 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
 
     if (confirmBtn) {
-        confirmBtn.addEventListener('click', () => {
-            console.log('Participação confirmada!');
-            closeModal();
+        confirmBtn.addEventListener('click', async () => {
+            if (!currentPostId) {
+                console.error('No post ID available');
+                return;
+            }
+
+            const userId = getCurrentUserId();
+            if (!userId) {
+                alert('Erro: usuário não identificado. Faça login novamente.');
+                closeModal();
+                return;
+            }
+
+            try {
+                // Show loading state
+                confirmBtn.disabled = true;
+                confirmBtn.textContent = 'Processando...';
+
+                await saveParticipation(currentPostId, userId);
+                
+                // Success message
+                alert('Participação confirmada com sucesso!');
+                console.log('Participação confirmada para o post:', currentPostId);
+                
+                closeModal();
+            } catch (error) {
+                // Show error message to user
+                alert(`Erro: ${error.message}`);
+                console.error('Error confirming participation:', error);
+            } finally {
+                // Reset button state
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirmar';
+            }
         });
     }
 });

@@ -2,13 +2,18 @@ const express = require("express");
 const db = require("./db");
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
+const participationRoutes = require("./routes/participationRoutes");
 
 const app = express();
-app.use(express.json()); // para receber JSON no body
 
+app.use(express.json());
 app.use(express.static("public"));
+
+// Routes
 app.use("/auth", authRoutes);
-app.use("/posts", postRoutes);
+app.use("/posts", postRoutes); // routes will be /posts/, /posts/feed
+app.use("/api/posts", postRoutes); // routes will be /api/posts/, /api/posts/feed
+app.use("/participations", participationRoutes);
 
 app.listen(3000, () => {
   console.log("Servidor rodando em http://localhost:3000");
