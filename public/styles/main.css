@@ -215,240 +215,229 @@ strong {
     z-index: 3;
 }
 
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-/*                              EM COMUM NOS POPUPS 						     */
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/* POP-UP */
+
+
+
+#overlay.show {
+    display: block;
+    opacity: 1;
+}
+
 .div-popup-form {
     display: none;
-    width: min(50vw, 900px);
-    max-height: 90vh;
-    overflow-y: auto;
     position: fixed;
-    left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 4;
-    border-radius: 15px;
-    padding-bottom: 4vh;
-    background-color: #F1F1F1;
-    align-items: center;
-    box-shadow: 4px 4px 40px 0px #1E1E1E;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background-color: #ffffff !important;
+    color: var(--color-text-primary);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    width: 90%;
+    max-width: 550px;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
 }
 
-.div-popup-form>img {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-}
-
-.div-popup-form button {
-    cursor: pointer;
-    background-color: #138F21;
-}
-
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-/*                              DIV DE LOGIN 									 */
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 #div-login.show,
-#overlay.show {
+#div-signup.show,
+#div-createWork.show {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
-#div-login .form-title {
-    text-transform: uppercase;
-    margin: 4vh 0 6vh 0;
-    font-size: 1.3em;
-}
-
-#div-login input,
-#div-login select {
-    background-color: #E4E4E4;
-    margin-bottom: 5%;
-}
-
-#div-login input,
-#div-login button {
+.div-popup-form .form-title {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, var(--color-green-dark), var(--color-green));
+    color: var(--color-white);
+    padding: 1.5rem 2rem;
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: none;
+    text-align: left;
+    width: 100%;
     box-sizing: border-box;
-    width: 75%;
-    border: 1px solid #1E1E1E;
-    border-radius: 5px;
-    height: 2.6em;
-    padding-left: 0.8em;
+}
+
+.div-popup-form > img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    z-index: 2001;
+}
+
+.div-popup-form > img:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: rotate(90deg);
+}
+
+.div-popup-form form {
+    padding: 2rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    background-color: #ffffff !important;
+    box-sizing: border-box; 
+    width: 100%;
+}
+
+.div-popup-form input,
+.div-popup-form select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    background-color: var(--color-white);
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.div-popup-form input:focus,
+.div-popup-form select:focus {
+    outline: none;
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
 }
 
 #div-login span {
-    position: relative;
-    display: block;
-    width: 75%;
+    display: flex;
+    align-items: center;
     text-align: center;
-    margin: 5% 0;
+    color: var(--color-text-secondary);
+    margin: 0;
+    padding: 0 2rem 1.5rem 2rem;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff !important;
 }
 
 #div-login span::before,
 #div-login span::after {
     content: '';
-    position: absolute;
-    top: 50%;
-    height: 1px;
-    background-color: #2C2C2C;
-    transform: translateY(-50%);
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-#div-login span::before {
-    left: 0;
-    right: 50%;
-    margin-right: 15px;
-}
+#div-login span:not(:empty)::before { margin-right: .5em; }
+#div-login span:not(:empty)::after { margin-left: .5em; }
 
-#div-login span::after {
-    right: 0;
-    left: 50%;
-    margin-left: 15px;
-}
-
-#create-account-button {
-    margin: 0 0 4vh 0;
-}
-
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-/*                              DIV DE SIGNUP 									 */
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-#div-signup {
-    display: none;
-}
-
-#div-signup.show,
-#overlay.show {
+.div-popup-form button {
+    border: none;
+    padding: 0.8rem 1.75rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#div-signup .form-title {
-    text-transform: uppercase;
-    margin: 4vh 0 2% 0;
-    font-size: 1.3em;
+.div-popup-form button[type="submit"] {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    box-shadow: 0 4px 15px -2px rgba(16, 185, 129, 0.4);
+    margin-top: 1rem;
 }
 
-#div-signup input,
-#div-signup select {
-    background-color: #E4E4E4;
-    margin-bottom: 8%;
+.div-popup-form button[type="submit"]:hover {
+    background-color: var(--color-green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px -2px rgba(16, 185, 129, 0.5);
+}
+
+#goto-signin-button {
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    margin: 0;
+    width: auto;
+    padding-bottom: 2rem;
+    padding-top: 0;
+    background-color: #ffffff !important;
+}
+
+#goto-signin-button:hover {
+    color: var(--color-dark);
+    background-color: #e5e7eb !important;
 }
 
 .form-subdiv {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.6rem;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .form-subdiv .form-label {
     display: block;
-    flex-basis: 100%;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
 }
 
-.form-subdiv label {
-    font-size: 1em;
-    width: fit-content;
-    height: 1em;
-    margin-left: 1em;
-}
-
-.form-subdiv input,
-.form-subdiv select {
-    box-sizing: border-box;
-    border: 1px solid #1E1E1E;
-    border-radius: 5px;
-    height: 2.6em;
-    width: 97%;
-    padding-left: 0.8em;
-}
-
-.input-subdiv {
-    width: 100%;
-}
-
-.two-input-div {
+.two-input-div, .three-input-div {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 }
-
-.two-input-div>*:first-child {
-    justify-self: start;
-}
-
-.two-input-div>*:last-child {
-    justify-self: end;
-}
-
-.two-divs {
-    display: flexbox;
-    width: 100%;
-    gap: 0.3rem;
-}
-
-.two-divs:last-child>select:last-child {
-    display: block;
-    margin-left: auto;
-}
-
-.three-input-div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-}
-
-.three-input-div>*:first-child {
-    justify-self: start;
-}
-
-.three-input-div>*:last-child {
-    justify-self: end;
-}
+.two-input-div { grid-template-columns: 1fr 1fr; }
+.three-input-div { grid-template-columns: 1fr 1fr 1fr; }
 
 #student-input {
     display: none;
 }
 
-#div-signup button {
-    box-sizing: border-box;
-    margin-top: 2%;
-    width: 80%;
-    border: 1px solid #1E1E1E;
-    border-radius: 5px;
-    height: 2.6em;
-    padding-left: 0.8em;
+@media (max-width: 600px) {
+    .div-popup-form .form-title {
+        font-size: 1.25rem;
+        padding: 1.25rem 1.5rem;
+        gap: 1rem;
+    }
+
+    .div-popup-form form {
+        padding: 1.5rem;
+    }
+
+    .two-input-div, .three-input-div {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .div-popup-form input,
+    .div-popup-form select {
+        margin-bottom: 0;
+    }
+    
+    .form-subdiv {
+        margin-bottom: 1.5rem;
+    }
 }
 
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-/*                              DIV DE CRIAR TRABALHO 							 */
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-
-#div-createWork .form-title{
-    text-transform: uppercase;
-    margin: 4vh 0 6vh 0;
-    justify-self: center;
-    font-size: 1.3em;
-}
-
-#div-createWork input, #div-createWork select{
-    background-color: #E4E4E4;
-    margin-bottom: 4%;
-}
-
-#div-createWork input, #div-createWork select, #div-createWork button{
-    box-sizing: border-box;
-    width: 75%;
-    border: 1px solid #1E1E1E;
-    border-radius: 5px;
-    height: 2.6em;
-    padding-left: 0.8em;
-}
 
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 /*                                  DIV DE ATIVIDADES                            */
@@ -778,6 +767,7 @@ strong {
 }
 /* RESPONSIVIDADE PARA TELAS MENORES */
 @media (max-width: 600px) {
+
     .modal-container {
         width: 90%;
         border-radius: 16px;
@@ -963,9 +953,7 @@ strong {
     max-width: 96.5%;
     margin: 0 auto; 
     padding: 0rem auto;
-    background-color: var(--color-white);
     border-radius: 10px;
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1);
 }
 
 .caixa-filtros-titulo {
