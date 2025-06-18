@@ -429,6 +429,27 @@ strong {
 /*                              DIV DE CRIAR TRABALHO 							 */
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
+#div-createWork .form-title{
+    text-transform: uppercase;
+    margin: 4vh 0 6vh 0;
+    justify-self: center;
+    font-size: 1.3em;
+}
+
+#div-createWork input, #div-createWork select{
+    background-color: #E4E4E4;
+    margin-bottom: 4%;
+}
+
+#div-createWork input, #div-createWork select, #div-createWork button{
+    box-sizing: border-box;
+    width: 75%;
+    border: 1px solid #1E1E1E;
+    border-radius: 5px;
+    height: 2.6em;
+    padding-left: 0.8em;
+}
+
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 /*                                  DIV DE ATIVIDADES                            */
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
