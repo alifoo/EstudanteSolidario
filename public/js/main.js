@@ -1,173 +1,199 @@
 import * as toggle from './toggle.js';
 
+// Listeners para os popups do cabeçalho e de criar tarefa
 document.getElementById('menu-toggle').addEventListener('click', toggle.toggleMenu);
 document.getElementById('login').addEventListener('click', toggle.loginPopUp);
 document.querySelectorAll('.login-exit-button').forEach(button => {
-  button.addEventListener('click', toggle.exitLoginPopup);
+    button.addEventListener('click', toggle.exitLoginPopup);
 });
 document.querySelectorAll('.work-exit-button').forEach(button => {
-  button.addEventListener('click', toggle.removeWorkPopUp);
+    button.addEventListener('click', toggle.removeWorkPopUp);
 });
 document.getElementById('goto-signin-button').addEventListener('click', toggle.signinPopUp);
 document.getElementById('mkWork-Button').addEventListener('click', toggle.createWorkPopUp);
 
+// Função para carregar e exibir os posts do backend
 async function loadPosts() {
-  try {
-    const response = await fetch("/posts");
-    if (!response.ok) throw new Error("Failed to fetch posts");
+    try {
+        const response = await fetch("/posts");
+        if (!response.ok) {
+            // Se a resposta não for OK, lança um erro para ser pego pelo catch
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    const posts = await response.json();
-    console.log("Posts carregados:", posts);
-    const container = document.getElementById("activities");
-    container.innerHTML = "";
+        const posts = await response.json();
+        const container = document.getElementById("activities");
+        container.innerHTML = ""; // Limpa os cards existentes antes de adicionar os novos
 
-    posts.forEach((post) => {
-      const postHTML = `
-        <div class="container">
-          <h2 class="activity-title">${post.title}</h2>
-          <p class="activity-description">${post.content}</p>
-          <p class="activity-modality">Postado em: ${new Date(post.created_at).toLocaleString()}</p>
-          <button class="help-button">Quero ajudar</button>
-        </div>
-      `;
-      container.insertAdjacentHTML("beforeend", postHTML);
-    });
-  } catch (err) {
-    console.error("Erro ao carregar posts:", err);
-  }
+        if (posts.length === 0) {
+            container.innerHTML = "<p>Nenhuma tarefa encontrada no momento.</p>";
+            return;
+        }
+
+        posts.forEach((post) => {
+            // Usando a nova estrutura de .task-card com os dados do post
+            const postHTML = `
+                <div class="task-card" data-id="${post.id}">
+                    <img class="task-card-image" src="https://placehold.co/600x400/10B981/ffffff?text=Voluntariado" alt="Imagem da Tarefa">
+                    <div class="task-card-content">
+                        <div class="task-card-tags">
+                            <span class="tag tag-modality">${post.modality || 'Presencial'}</span>
+                        </div>
+                        <h3 class="task-card-title">${post.title}</h3>
+                        <p class="task-card-description">${post.content}</p>
+                        <div class="task-card-info">
+                            <div class="info-item">
+                                <span>Postado em: ${new Date(post.created_at).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <button class="help-button"><span>Quero ajudar</span></button>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML("beforeend", postHTML);
+        });
+    } catch (err) {
+        console.error("Erro ao carregar posts:", err);
+        const container = document.getElementById("activities");
+        // Exibe a mensagem de erro para o usuário
+        container.innerHTML = "<p>Ocorreu um erro ao carregar as tarefas. Tente novamente mais tarde.</p>";
+    }
 }
 
-document.addEventListener("DOMContentLoaded", loadPosts);
+// Lógica principal executada quando o HTML estiver pronto
+document.addEventListener("DOMContentLoaded", () => {
+    // Carrega os posts assim que a página é carregada
+    loadPosts();
 
+    // --- LÓGICA DOS FILTROS --- //
+    const botaoPrincipalFiltro = document.querySelector('.botao-filtro:not([data-filter])');
+    if (botaoPrincipalFiltro) {
+        const botoesDeFiltro = document.querySelectorAll('.botao-filtro[data-filter]');
+        const iconeSeta = botaoPrincipalFiltro.querySelector('.icone-seta');
+        const campoTexto = document.getElementById('filtro-texto-input');
+        const campoData = document.getElementById('filtro-data-input');
+        const selecaoArea = document.getElementById('filtro-area-select');
+        const selecaoPessoa = document.getElementById('filtro-pessoa-select');
+        const containerCamposDinamicos = document.querySelector('.container-campos-dinamicos');
+        let filtrosEstaoVisiveis = false;
 
+        botoesDeFiltro.forEach(botao => {
+            botao.classList.add('filtro-animado');
+            botao.style.display = 'none';
+        });
 
+        const esconderCamposDinamicos = () => {
+            campoTexto.classList.remove('visivel');
+            campoData.classList.remove('visivel');
+            selecaoArea.classList.remove('visivel');
+            selecaoPessoa.classList.remove('visivel');
+            containerCamposDinamicos.style.height = '0px';
+        };
 
+        const gerenciarCamposDinamicos = () => {
+            const filtroAtivo = document.querySelector('.botao-filtro[data-filter].ativo');
+            let campoParaMostrar = null;
 
-// FILTROS //
+            esconderCamposDinamicos();
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Seletores
-  const botaoPrincipal = document.querySelector('.botao-filtro:not([data-filter])');
-  const botoesDeFiltro = document.querySelectorAll('.botao-filtro[data-filter]');
-  const iconeSeta = botaoPrincipal.querySelector('.icone-seta');
-  const campoTexto = document.getElementById('filtro-texto-input');
-  const campoData = document.getElementById('filtro-data-input');
-  const selecaoArea = document.getElementById('filtro-area-select');
-  const selecaoPessoa = document.getElementById('filtro-pessoa-select');
-  const containerCamposDinamicos = document.querySelector('.container-campos-dinamicos');
+            if (filtroAtivo) {
+                const tipoFiltro = filtroAtivo.getAttribute('data-filter');
+                switch (tipoFiltro) {
+                    case 'universidade':
+                    case 'titulo':
+                        campoTexto.placeholder = `Digite o ${tipoFiltro}...`;
+                        campoParaMostrar = campoTexto;
+                        break;
+                    case 'area':
+                        campoParaMostrar = selecaoArea;
+                        break;
+                    case 'pessoa':
+                        campoParaMostrar = selecaoPessoa;
+                        break;
+                    case 'data':
+                        campoParaMostrar = campoData;
+                        break;
+                }
+            }
 
-  let filtrosEstaoVisiveis = false;
+            if (campoParaMostrar) {
+                campoParaMostrar.classList.add('visivel');
+                containerCamposDinamicos.style.height = '46px';
+            } else {
+                containerCamposDinamicos.style.height = '0px';
+            }
+        };
 
-  // Esconde os botões e os campos dinâmicos inicialmente
-  botoesDeFiltro.forEach(botao => {
-      botao.classList.add('filtro-animado');
-      botao.style.display = 'none';
-  });
+        const toggleFiltros = () => {
+            filtrosEstaoVisiveis = !filtrosEstaoVisiveis;
+            iconeSeta.style.transform = filtrosEstaoVisiveis ? 'rotate(90deg)' : 'rotate(0deg)';
+            
+            if (filtrosEstaoVisiveis) {
+                botoesDeFiltro.forEach((botao, index) => {
+                    botao.style.display = 'flex';
+                    setTimeout(() => botao.classList.remove('filtro-animado'), 20 + index * 40);
+                });
+            } else {
+                botoesDeFiltro.forEach(botao => {
+                    botao.classList.add('filtro-animado');
+                    botao.classList.remove('ativo');
+                    setTimeout(() => { if (!filtrosEstaoVisiveis) botao.style.display = 'none'; }, 300);
+                });
+                esconderCamposDinamicos();
+            }
+        };
 
-  // Função para esconder todos os campos dinâmicos
-  const esconderCamposDinamicos = () => {
-      campoTexto.classList.remove('visivel');
-      campoData.classList.remove('visivel');
-      selecaoArea.classList.remove('visivel');
-      selecaoPessoa.classList.remove('visivel');
-      containerCamposDinamicos.style.height = '0px';
-  };
+        botaoPrincipalFiltro.addEventListener('click', toggleFiltros);
 
-  // Função para mostrar o campo dinâmico correto
-  const gerenciarCamposDinamicos = () => {
-      const filtroAtivo = document.querySelector('.botao-filtro[data-filter].ativo');
-      let campoParaMostrar = null;
+        botoesDeFiltro.forEach(botao => {
+            botao.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const estavaAtivo = botao.classList.contains('ativo');
+                botoesDeFiltro.forEach(btn => btn.classList.remove('ativo'));
+                if (!estavaAtivo) botao.classList.add('ativo');
+                gerenciarCamposDinamicos();
+            });
+        });
+    }
 
-      // Esconde todos os campos antes de decidir qual mostrar
-      campoTexto.classList.remove('visivel');
-      campoData.classList.remove('visivel');
-      selecaoArea.classList.remove('visivel');
-      selecaoPessoa.classList.remove('visivel');
+    // --- LÓGICA DO MODAL 'QUERO AJUDAR' --- //
+    const modalOverlay = document.getElementById('modal-overlay');
+    const helpModal = document.getElementById('help-modal');
+    const closeModalBtn = document.getElementById('close-modal-button');
+    const cancelBtn = document.getElementById('cancel-button');
+    const confirmBtn = document.getElementById('confirm-button');
+    const activitiesContainer = document.getElementById('activities');
 
-      if (filtroAtivo) {
-          const tipoFiltro = filtroAtivo.getAttribute('data-filter');
-          switch (tipoFiltro) {
-              case 'universidade':
-              case 'titulo':
-                  campoTexto.placeholder = `Digite o ${tipoFiltro}...`;
-                  campoParaMostrar = campoTexto;
-                  break;
-              case 'area':
-                  campoParaMostrar = selecaoArea;
-                  break;
-              case 'pessoa':
-                  campoParaMostrar = selecaoPessoa;
-                  break;
-              case 'data':
-                  campoParaMostrar = campoData;
-                  break;
-          }
-      }
+    const openModal = () => {
+        if (modalOverlay && helpModal) {
+            modalOverlay.classList.add('visible');
+            helpModal.classList.add('visible');
+        }
+    };
 
-      if (campoParaMostrar) {
-          campoParaMostrar.classList.add('visivel');
-          // A altura do campo é calculada como 2*padding + altura da linha. 
-          // 46px é um bom valor para a maioria dos navegadores.
-          containerCamposDinamicos.style.height = '46px';
-      } else {
-          containerCamposDinamicos.style.height = '0px';
-      }
-  };
+    const closeModal = () => {
+        if (modalOverlay && helpModal) {
+            modalOverlay.classList.remove('visible');
+            helpModal.classList.remove('visible');
+        }
+    };
 
-  // Função principal para mostrar/esconder os filtros
-  const toggleFiltros = () => {
-      filtrosEstaoVisiveis = !filtrosEstaoVisiveis;
+    if (activitiesContainer) {
+        activitiesContainer.addEventListener('click', (event) => {
+            if (event.target.closest('.help-button')) {
+                openModal();
+            }
+        });
+    }
 
-      if (filtrosEstaoVisiveis) {
-          botoesDeFiltro.forEach((botao, index) => {
-              botao.style.display = 'flex';
-              setTimeout(() => {
-                  botao.classList.remove('filtro-animado');
-              }, 20 + index * 40);
-          });
-      } else {
-          botoesDeFiltro.forEach(botao => {
-              botao.classList.add('filtro-animado');
-              botao.classList.remove('ativo');
-              setTimeout(() => {
-                  if (!filtrosEstaoVisiveis) {
-                      botao.style.display = 'none';
-                  }
-              }, 300);
-          });
-          esconderCamposDinamicos();
-      }
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
 
-      if (iconeSeta) {
-          iconeSeta.style.transform = filtrosEstaoVisiveis ? 'rotate(90deg)' : 'rotate(0deg)';
-      }
-  };
-
-  // Event listener para o botão principal
-  botaoPrincipal.addEventListener('click', toggleFiltros);
-
-  // Event listeners para os botões de filtro individuais
-  botoesDeFiltro.forEach(botao => {
-      botao.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const estavaAtivo = botao.classList.contains('ativo');
-          botoesDeFiltro.forEach(btn => btn.classList.remove('ativo'));
-          if (!estavaAtivo) {
-              botao.classList.add('ativo');
-          }
-          gerenciarCamposDinamicos();
-
-          const tipoFiltro = botao.getAttribute('data-filter');
-          if (botao.classList.contains('ativo')) {
-              console.log(`Filtro selecionado: ${tipoFiltro}`);
-          } else {
-              console.log(`Filtro '${tipoFiltro}' desativado.`);
-          }
-      });
-  });
-  
-  // Inicia com os filtros escondidos
-  toggleFiltros();
-  toggleFiltros();
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', () => {
+            console.log('Participação confirmada!');
+            closeModal();
+        });
+    }
 });
-// FIM / FILTROS //
