@@ -1,20 +1,16 @@
-// routes/participationRoutes.js
 const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
-// POST /participations - Add user participation to a post
 router.post("/", (req, res) => {
   const { user_id, post_id } = req.body;
 
-  // Validate required fields
   if (!user_id || !post_id) {
     return res.status(400).json({ 
       error: "user_id and post_id are required" 
     });
   }
 
-  // Check if user exists
   db.get("SELECT id FROM users WHERE id = ?", [user_id], (err, user) => {
     if (err) {
       console.error("Error checking user:", err);
@@ -25,7 +21,6 @@ router.post("/", (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Check if post exists
     db.get("SELECT id FROM posts WHERE id = ?", [post_id], (err, post) => {
       if (err) {
         console.error("Error checking post:", err);
@@ -36,7 +31,6 @@ router.post("/", (req, res) => {
         return res.status(404).json({ error: "Post not found" });
       }
 
-      // Insert participation (will fail if already exists due to UNIQUE constraint)
       db.run(
         "INSERT INTO participations (user_id, post_id) VALUES (?, ?)",
         [user_id, post_id],
@@ -63,7 +57,6 @@ router.post("/", (req, res) => {
   });
 });
 
-// GET /participations/:post_id - Get all participants for a post
 router.get("/:post_id", (req, res) => {
   const { post_id } = req.params;
 
@@ -85,7 +78,6 @@ router.get("/:post_id", (req, res) => {
   );
 });
 
-// GET /participations/user/:user_id - Get all participations for a user
 router.get("/user/:user_id", (req, res) => {
   const { user_id } = req.params;
 
@@ -107,7 +99,6 @@ router.get("/user/:user_id", (req, res) => {
   );
 });
 
-// DELETE /participations - Remove user participation from a post
 router.delete("/", (req, res) => {
   const { user_id, post_id } = req.body;
 

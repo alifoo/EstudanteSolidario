@@ -9,10 +9,9 @@ const app = express();
 app.use(express.json());
 app.use(express.static("public"));
 
-// Routes
 app.use("/auth", authRoutes);
-app.use("/posts", postRoutes); // routes will be /posts/, /posts/feed
-app.use("/api/posts", postRoutes); // routes will be /api/posts/, /api/posts/feed
+app.use("/posts", postRoutes);
+app.use("/api/posts", postRoutes);
 app.use("/participations", participationRoutes);
 
 app.listen(3000, () => {

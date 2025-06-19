@@ -2,7 +2,6 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
-// GET all posts (accessible at /posts/ or /api/posts/)
 router.get("/", (req, res) => {
   db.all("SELECT * FROM posts ORDER BY created_at DESC", [], (err, rows) => {
     if (err) {
@@ -12,11 +11,10 @@ router.get("/", (req, res) => {
   });
 });
 
-// POST create new post (accessible at /posts/ or /api/posts/)
 router.post("/", async (req, res) => {
   try {
     const { title, content, course, creator_type } = req.body;
-    const user_id = 1; // You should get this from authentication
+    const user_id = 1;
     
     const result = await db.run(
       'INSERT INTO posts (user_id, title, content, course, creator_type) VALUES (?, ?, ?, ?, ?)',
@@ -37,7 +35,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// HTML feed route (accessible at /posts/feed or /api/posts/feed)
+
 router.get("/feed", (req, res) => {
   db.all("SELECT * FROM posts ORDER BY created_at DESC", [], (err, rows) => {
     if (err) {

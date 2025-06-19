@@ -1,6 +1,5 @@
 import * as toggle from './toggle.js';
 
-// Listeners para os popups do cabeçalho e de criar tarefa
 document.getElementById('menu-toggle').addEventListener('click', toggle.toggleMenu);
 document.getElementById('login').addEventListener('click', toggle.loginPopUp);
 document.querySelectorAll('.login-exit-button').forEach(button => {
@@ -12,23 +11,15 @@ document.querySelectorAll('.work-exit-button').forEach(button => {
 document.getElementById('goto-signin-button').addEventListener('click', toggle.signinPopUp);
 document.getElementById('mkWork-Button').addEventListener('click', toggle.createWorkPopUp);
 
-// Variable to store current post ID for modal
 let currentPostId = null;
-
-// Function to get current user ID (you'll need to implement user authentication)
 function getCurrentUserId() {
-    // This is a placeholder - you'll need to implement proper user authentication
-    // For now, you could store user ID in localStorage after login
-    // or get it from a session/JWT token
     return localStorage.getItem('userId') || null;
 }
 
-// Function to check if user is logged in
 function isUserLoggedIn() {
     return getCurrentUserId() !== null;
 }
 
-// Function to save participation to database
 async function saveParticipation(postId, userId) {
     try {
         const response = await fetch('/participations', {
@@ -61,7 +52,6 @@ async function saveParticipation(postId, userId) {
     }
 }
 
-// Função para carregar e exibir os posts do backend
 async function loadPosts() {
     try {
         const response = await fetch("/posts");
@@ -107,25 +97,86 @@ async function loadPosts() {
 }
 
 
-
-// Lógica principal executada quando o HTML estiver pronto
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("login-main-button").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const email = document.querySelector("#div-login input[type='email']").value;
+    const password = document.querySelector("#div-login input[type='password']").value;
+
+    try {
+      document.getElementById("login-main-button").addEventListener("click", async (e) => {
+	e.preventDefault();
+
+	const email = document.querySelector("#div-login input[type='email']").value;
+	const password = document.querySelector("#div-login input[type='password']").value;
+
+	const res = await fetch("/auth/login", {
+	  method: "POST",
+	  headers: { "Content-Type": "application/json" },
+	  body: JSON.stringify({ email, password })
+	});
+
+	const data = await res.json();
+	if (res.ok) {
+	  alert(`Bem-vindo, ${data.user.name}!`);
+
+	  document.getElementById("div-login").style.display = "none";
+	  document.getElementById("login").style.display = "none";
+	  document.getElementById("modal-overlay").style.display = "none";
+	  document.getElementById("overlay").style.display = "none";
+
+	  const perfilBtn = document.getElementById("profile");
+	  if (perfilBtn) perfilBtn.style.display = "inline-block";
+
+	  localStorage.setItem("user", JSON.stringify(data.user));
+	} else {
+	  alert("Erro: " + data.error);
+	}
+      });
+    } catch (err) {
+      alert("Erro ao tentar login");
+    }
+  });
+  document.querySelector("#div-signup form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("fname").value + " " + document.getElementById("lname").value;
+    const email = document.getElementById("email-signup").value;
+    const password = document.getElementById("passowrd-signup").value;
+    const birth_day = document.getElementById("birthDay").value;
+    const birth_month = document.getElementById("birthMonth").value;
+    const birth_year = document.getElementById("year").value;
+    const birthday = `${birth_year}-${birth_month.padStart(2, '0')}-${birth_day.padStart(2, '0')}`;
+    const course = document.getElementById("student-area-select")?.value || "NotStudent";
+    const university = document.getElementById("university")?.value || "NotStudent";
+
+    try {
+      const res = await fetch("/auth/register", {
+	method: "POST",
+	headers: { "Content-Type": "application/json" },
+	body: JSON.stringify({ name, birthday, course, university, email, password })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+	alert("Conta criada com sucesso! ID do usuário: " + data.id);
+      } else {
+	alert("Erro: " + data.error);
+      }
+    } catch (err) {
+      alert("Erro ao tentar criar conta");
+    }
+  });
     document.getElementById('create-task-form').addEventListener('submit', async function(e) {
-      e.preventDefault(); // Prevent the default form submission
+      e.preventDefault();
       
-      // Get form values
       const title = document.getElementById('task-title').value;
       const description = document.getElementById('task-description').value;
       const course = document.getElementById('task-course').value;
       const creatorType = document.getElementById('task-creator-type').value;
       
-      // Get current user ID
       const userId = getCurrentUserId();
-      
-      if (!userId) {
-	  alert('Você precisa estar logado para criar uma tarefa!');
-	  return;
-      }
       
       try {
 	  // Send the data to your backend
@@ -149,11 +200,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	  
 	  const newPost = await response.json();
 	  
-	  // Close the popup and refresh the posts
 	  toggle.removeWorkPopUp();
 	  loadPosts();
 	  
-	  // Clear the form
 	  document.getElementById('create-task-form').reset();
 	  
       } catch (error) {
